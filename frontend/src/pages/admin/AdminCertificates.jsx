@@ -1,0 +1,1 @@
+export default function AdminCertificates() { return <div>Certificates</div>; }

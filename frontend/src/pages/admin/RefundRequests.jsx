@@ -1,0 +1,1 @@
+export default function RefundRequests() { return <div>Refunds</div>; }

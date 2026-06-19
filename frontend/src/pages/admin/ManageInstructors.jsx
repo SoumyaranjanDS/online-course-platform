@@ -1,0 +1,1 @@
+export default function ManageInstructors() { return <div>Manage Instructors</div>; }

@@ -1,0 +1,1 @@
+export default function DashboardTopbar() { return <header>Topbar</header>; }

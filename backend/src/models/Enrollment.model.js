@@ -1,0 +1,1 @@
+import mongoose from "mongoose"; export default mongoose.model("Enrollment", new mongoose.Schema({}));

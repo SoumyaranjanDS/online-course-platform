@@ -1,0 +1,1 @@
+export default function CourseAnalytics() { return <div>Analytics</div>; }

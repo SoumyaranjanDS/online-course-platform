@@ -1,0 +1,1 @@
+export default function EditCourse() { return <div>Edit Course</div>; }

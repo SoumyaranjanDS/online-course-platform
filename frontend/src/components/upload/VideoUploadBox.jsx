@@ -1,0 +1,1 @@
+export default function VideoUploadBox() { return <div>Upload Video</div>; }

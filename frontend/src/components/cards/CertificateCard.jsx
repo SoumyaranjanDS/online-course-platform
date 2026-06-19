@@ -1,0 +1,1 @@
+export default function CertificateCard() { return <div>Certificate Card</div>; }

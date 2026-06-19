@@ -1,0 +1,1 @@
+export default function CurriculumSidebar() { return <div>Curriculum</div>; }

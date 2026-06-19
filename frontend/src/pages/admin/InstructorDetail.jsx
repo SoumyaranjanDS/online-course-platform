@@ -1,0 +1,1 @@
+export default function InstructorDetail() { return <div>Instructor Detail</div>; }

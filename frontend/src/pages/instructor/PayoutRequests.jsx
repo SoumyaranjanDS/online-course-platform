@@ -1,0 +1,1 @@
+export default function PayoutRequests() { return <div>Payouts</div>; }

@@ -1,0 +1,1 @@
+export default function RejectedCourses() { return <div>Rejected Courses</div>; }

@@ -1,0 +1,1 @@
+export default function PayoutsTable() { return <table></table>; }

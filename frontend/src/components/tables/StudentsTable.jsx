@@ -1,0 +1,1 @@
+export default function StudentsTable() { return <table></table>; }

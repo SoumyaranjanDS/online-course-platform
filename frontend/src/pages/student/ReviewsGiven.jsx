@@ -1,0 +1,1 @@
+export default function ReviewsGiven() { return <div>Reviews</div>; }

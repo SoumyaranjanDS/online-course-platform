@@ -1,0 +1,1 @@
+export default function StudentsEnrolled() { return <div>Students</div>; }

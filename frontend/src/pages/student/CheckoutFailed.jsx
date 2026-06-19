@@ -1,0 +1,1 @@
+export default function CheckoutFailed() { return <div>Checkout Failed</div>; }

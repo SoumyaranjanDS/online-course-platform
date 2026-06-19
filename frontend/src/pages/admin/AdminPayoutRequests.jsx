@@ -1,0 +1,1 @@
+export default function AdminPayoutRequests() { return <div>Payouts</div>; }

@@ -1,0 +1,1 @@
+export default function LessonItem() { return <div>Lesson</div>; }

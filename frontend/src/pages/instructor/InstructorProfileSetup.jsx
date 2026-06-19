@@ -1,0 +1,1 @@
+export default function InstructorProfileSetup() { return <div>Profile Setup</div>; }

@@ -1,0 +1,1 @@
+export default function InstructorPublicProfilePage() { return <div>Instructor Profile</div>; }

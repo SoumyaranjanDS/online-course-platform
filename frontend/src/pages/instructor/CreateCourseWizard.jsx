@@ -1,0 +1,1 @@
+export default function CreateCourseWizard() { return <div>Create Course</div>; }

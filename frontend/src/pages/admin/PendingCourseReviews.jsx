@@ -1,0 +1,1 @@
+export default function PendingCourseReviews() { return <div>Pending Reviews</div>; }

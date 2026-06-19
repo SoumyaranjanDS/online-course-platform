@@ -1,0 +1,1 @@
+export default function CourseListingPage() { return <div>Courses</div>; }

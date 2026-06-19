@@ -1,0 +1,1 @@
+export default function CoursesTable() { return <table></table>; }

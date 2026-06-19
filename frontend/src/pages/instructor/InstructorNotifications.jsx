@@ -1,0 +1,1 @@
+export default function InstructorNotifications() { return <div>Notifications</div>; }

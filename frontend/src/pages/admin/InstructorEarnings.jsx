@@ -1,0 +1,1 @@
+export default function InstructorEarnings() { return <div>Earnings</div>; }

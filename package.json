@@ -1,0 +1,10 @@
+{
+  "name": "online-course-platform",
+  "version": "1.0.0",
+  "description": "Online Course Platform",
+  "scripts": {
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev": "npx concurrently \"npm run dev:frontend\" \"npm run dev:backend\""
+  }
+}

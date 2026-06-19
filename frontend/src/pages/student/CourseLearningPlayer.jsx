@@ -1,0 +1,1 @@
+export default function CourseLearningPlayer() { return <div>Player</div>; }

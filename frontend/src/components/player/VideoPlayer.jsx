@@ -1,0 +1,1 @@
+export default function VideoPlayer() { return <div>Player</div>; }

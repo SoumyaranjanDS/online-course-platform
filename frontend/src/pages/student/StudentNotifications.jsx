@@ -1,0 +1,1 @@
+export default function StudentNotifications() { return <div>Notifications</div>; }

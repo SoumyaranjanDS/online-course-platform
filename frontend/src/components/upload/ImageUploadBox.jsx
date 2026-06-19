@@ -1,0 +1,1 @@
+export default function ImageUploadBox() { return <div>Upload Image</div>; }

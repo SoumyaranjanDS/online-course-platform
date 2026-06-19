@@ -1,0 +1,1 @@
+export default function PhaseAccordion() { return <div>Phase</div>; }

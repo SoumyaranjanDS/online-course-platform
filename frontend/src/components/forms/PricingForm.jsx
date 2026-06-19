@@ -1,0 +1,1 @@
+export default function PricingForm() { return <form></form>; }

@@ -1,0 +1,1 @@
+export default function ResourceUploadBox() { return <div>Upload Resource</div>; }

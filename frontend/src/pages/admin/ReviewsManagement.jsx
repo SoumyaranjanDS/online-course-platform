@@ -1,0 +1,1 @@
+export default function ReviewsManagement() { return <div>Reviews</div>; }

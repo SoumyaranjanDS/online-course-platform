@@ -1,0 +1,1 @@
+export default function CertificateDetail() { return <div>Certificate Detail</div>; }
