@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LearnHub - Advanced UI/UX Design Masterclass</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#a36700",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "outline": "#727785",
+                        "tertiary": "#825100",
+                        "on-primary-fixed": "#001a42",
+                        "secondary-container": "#6cf8bb",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#006c49",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-tint": "#005ac2",
+                        "on-primary-fixed-variant": "#004395",
+                        "background": "#f8f9ff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "error-container": "#ffdad6",
+                        "primary": "#0058be",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-surface-variant": "#424754",
+                        "outline-variant": "#c2c6d6",
+                        "on-primary-container": "#fefcff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary-fixed": "#002113",
+                        "on-tertiary-container": "#fffbff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffddb8",
+                        "inverse-surface": "#213145",
+                        "surface-bright": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "inverse-primary": "#adc6ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#6ffbbe",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#00714d",
+                        "on-background": "#0b1c30",
+                        "primary-container": "#2170e4",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "container-max": "1280px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface shadow-sm docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-8">
+<a class="text-headline-sm font-headline-sm font-bold text-primary" href="#">LearnHub</a>
+<nav class="hidden md:flex gap-6">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md" href="#">Courses</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md hover:bg-surface-container-low transition-all px-2 py-1 rounded" href="#">Mentors</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md hover:bg-surface-container-low transition-all px-2 py-1 rounded" href="#">Pricing</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md hover:bg-surface-container-low transition-all px-2 py-1 rounded" href="#">Resources</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border-1.5 border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary-fixed-dim rounded-lg text-body-sm font-body-sm w-64 transition-all" placeholder="Search courses..." type="text"/>
+</div>
+<button class="hidden sm:block text-primary font-label-md text-label-md px-4 py-2 hover:bg-surface-container-low rounded-lg transition-all">Login</button>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2 rounded-[16px] hover:bg-primary-container transition-all scale-98 active:scale-95 duration-200 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)]">Register</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-gutter py-lg flex flex-col lg:flex-row gap-lg">
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col gap-lg">
+<!-- Hero Section (Course Info) -->
+<section class="flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-caps text-label-caps">Design</span>
+<span class="bg-surface-container text-on-surface-variant px-3 py-1 rounded-full font-label-caps text-label-caps">Best Seller</span>
+</div>
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg text-on-surface">Advanced UI/UX Design Masterclass</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant">Master the art of creating intuitive, beautiful, and highly functional user interfaces. Learn the complete design process from research to prototyping using industry-standard tools.</p>
+<div class="flex flex-wrap items-center gap-6 mt-4">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined filled text-tertiary-fixed-dim">star</span>
+<span class="font-label-md text-label-md text-on-surface">4.8</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant underline cursor-pointer">(2,451 reviews)</span>
+</div>
+<div class="flex items-center gap-sm">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="A professional headshot of a female UX instructor in a modern, brightly lit office environment, wearing a smart casual outfit. The lighting is soft and flattering, creating a trustworthy and approachable mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzINt7W3QrpH4WhgYCH3WJCdMA2RMbqQ50F19DwzH89I6DqQowGwWBfFnNVvnNUmJFrTtq325hFllSCb3sUjBHPrO23Rn2tntwK0ExqF78HWqQvJGf12sFKwhxVOBctX5iSD9YIMPVvlwAt7mNlG1Q6d6yqPt1DrlTyZ6UN2wx6hZlK3R38687oR0tzJ2ptrKuPEYMTU9j_tyGJrruSImpBbz9UDPm1q5bo-GKr644usBFoh4rbuPZ__rYZ0jNfxlnqhdtS_sgT9A"/>
+<span class="text-body-sm font-body-sm text-on-surface">Created by <strong class="font-semibold">Sarah Jenkins</strong></span>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">update</span>
+<span class="text-body-sm font-body-sm">Last updated 10/2023</span>
+</div>
+<div class="flex items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">language</span>
+<span class="text-body-sm font-body-sm">English, Spanish</span>
+</div>
+</div>
+</section>
+<!-- What you will learn Bento Grid -->
+<section class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-md shadow-sm">
+<h2 class="text-headline-sm font-headline-sm text-on-surface mb-md">What you will learn</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<p class="text-body-sm font-body-sm text-on-surface">Conduct comprehensive user research and synthesize findings into actionable insights.</p>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<p class="text-body-sm font-body-sm text-on-surface">Build robust design systems from scratch using Figma components and variables.</p>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<p class="text-body-sm font-body-sm text-on-surface">Create high-fidelity interactive prototypes to test complex user flows.</p>
+</div>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<p class="text-body-sm font-body-sm text-on-surface">Master advanced typography, color theory, and spatial layout principles.</p>
+</div>
+</div>
+</section>
+<!-- Curriculum Accordion -->
+<section>
+<h2 class="text-headline-sm font-headline-sm text-on-surface mb-md">Course Curriculum</h2>
+<div class="flex flex-col gap-xs">
+<!-- Phase 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<button class="w-full flex justify-between items-center p-sm bg-surface hover:bg-surface-container-low transition-colors text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
+<div>
+<span class="font-label-md text-label-md text-on-surface">Phase 1: Foundations of UX</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">5 lessons • 2 hours 15 mins</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+<div class="hidden flex flex-col gap-1 p-sm border-t border-outline-variant bg-surface-container-lowest">
+<div class="flex justify-between items-center py-2">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">play_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface hover:text-primary cursor-pointer transition-colors">Introduction to User-Centered Design</span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant">15:30</span>
+</div>
+<div class="flex justify-between items-center py-2">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant">article</span>
+<span class="text-body-sm font-body-sm text-on-surface hover:text-primary cursor-pointer transition-colors">Understanding User Personas</span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant">10:00</span>
+</div>
+</div>
+</div>
+<!-- Phase 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden">
+<button class="w-full flex justify-between items-center p-sm bg-surface hover:bg-surface-container-low transition-colors text-left" onclick="this.nextElementSibling.classList.toggle('hidden')">
+<div>
+<span class="font-label-md text-label-md text-on-surface">Phase 2: Visual Design Mastery</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">8 lessons • 4 hours 30 mins</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</button>
+<div class="hidden flex flex-col gap-1 p-sm border-t border-outline-variant bg-surface-container-lowest">
+<div class="flex justify-between items-center py-2">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">play_circle</span>
+<span class="text-body-sm font-body-sm text-on-surface hover:text-primary cursor-pointer transition-colors">Color Theory in Practice</span>
+</div>
+<span class="text-body-sm font-body-sm text-on-surface-variant">25:10</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar Sticky Card -->
+<aside class="w-full lg:w-80 flex-shrink-0">
+<div class="sticky top-28 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1)]">
+<div class="relative w-full h-48 bg-surface-container-high group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A modern, sleek digital illustration representing UI/UX design concepts, featuring floating wireframes, vibrant color palettes, and a clean minimalist aesthetic typical of high-end tech educational content." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz0VSjXot3eCtRPC3Y9PDeePbtsV9F51DXsz0exqLoAX8AmbF2zZK6yXm01Hf-qdE4WcaugJYzqu6jDuqecqJTFko7W_EhBjZW6C4Oc0UtQE4KImsDT-FmVEML8jDB80LCe3YFcv-5iLJYM9LVlKIMB2q087Kmjr-SfEyo7UvnIBV3mfH1RsHb9HDiSbdsELBgKFHE4O_HYZIgWcoDGadDmCOLvqnmjDJ3v4wwpy2ISBK69FhgTvkqgP4I-9GZaXPgjsl1sn0xago"/>
+<div class="absolute inset-0 flex items-center justify-center bg-inverse-surface/30 group-hover:bg-inverse-surface/20 transition-all">
+<div class="w-16 h-16 bg-surface-container-lowest/90 rounded-full flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined filled text-primary text-headline-sm">play_arrow</span>
+</div>
+</div>
+<span class="absolute bottom-2 left-2 bg-inverse-surface/80 text-on-secondary px-2 py-1 rounded text-label-caps font-label-caps">Preview</span>
+</div>
+<div class="p-md flex flex-col gap-sm">
+<div class="flex items-end gap-xs">
+<span class="text-headline-md font-headline-md text-on-surface">$89.99</span>
+<span class="text-body-md font-body-md text-on-surface-variant line-through pb-1">$199.99</span>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-[16px] hover:bg-primary-container transition-all scale-98 active:scale-95 duration-200 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)]">Buy Now</button>
+<button class="w-full bg-surface-container-high text-primary font-label-md text-label-md py-3 rounded-[16px] hover:bg-surface-container-highest transition-all scale-98 active:scale-95 duration-200 border border-outline-variant">Add to Cart</button>
+<div class="text-body-sm font-body-sm text-on-surface-variant text-center mt-2">
+                        30-Day Money-Back Guarantee
+                    </div>
+<hr class="border-outline-variant my-2"/>
+<h3 class="font-label-md text-label-md text-on-surface mb-2">This course includes:</h3>
+<ul class="flex flex-col gap-2">
+<li class="flex items-center gap-sm text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">ondemand_video</span>
+                            24 hours on-demand video
+                        </li>
+<li class="flex items-center gap-sm text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">file_download</span>
+                            50 downloadable resources
+                        </li>
+<li class="flex items-center gap-sm text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">all_inclusive</span>
+                            Full lifetime access
+                        </li>
+<li class="flex items-center gap-sm text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">devices</span>
+                            Access on mobile and TV
+                        </li>
+<li class="flex items-center gap-sm text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">workspace_premium</span>
+                            Certificate of completion
+                        </li>
+</ul>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant full-width bottom mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter py-lg max-w-container-max mx-auto gap-md">
+<div class="text-headline-sm font-headline-sm font-bold text-primary">LearnHub</div>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant hover:text-primary font-body-sm text-body-sm hover:underline decoration-2 transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary font-body-sm text-body-sm hover:underline decoration-2 transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary font-body-sm text-body-sm hover:underline decoration-2 transition-all opacity-80 hover:opacity-100" href="#">Cookie Policy</a>
+<a class="text-on-surface-variant hover:text-primary font-body-sm text-body-sm hover:underline decoration-2 transition-all opacity-80 hover:opacity-100" href="#">Support</a>
+</nav>
+<div class="text-body-sm font-body-sm text-on-surface-variant">
+                © 2024 LearnHub. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

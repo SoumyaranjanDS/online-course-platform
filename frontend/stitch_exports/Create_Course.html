@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LearnHub - Create Course</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#a36700",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "outline": "#727785",
+                        "tertiary": "#825100",
+                        "on-primary-fixed": "#001a42",
+                        "secondary-container": "#6cf8bb",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#006c49",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-tint": "#005ac2",
+                        "on-primary-fixed-variant": "#004395",
+                        "background": "#f8f9ff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "error-container": "#ffdad6",
+                        "primary": "#0058be",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-surface-variant": "#424754",
+                        "outline-variant": "#c2c6d6",
+                        "on-primary-container": "#fefcff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary-fixed": "#002113",
+                        "on-tertiary-container": "#fffbff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffddb8",
+                        "inverse-surface": "#213145",
+                        "surface-bright": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "inverse-primary": "#adc6ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#6ffbbe",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#00714d",
+                        "on-background": "#0b1c30",
+                        "primary-container": "#2170e4",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "container-max": "1280px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .form-input-focus:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface-container shadow-sm font-body-md text-body-md text-primary dark:text-primary-fixed docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-6">
+<a class="text-headline-sm font-headline-sm font-bold text-primary dark:text-primary-fixed flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-primary" data-icon="school" style="font-variation-settings: 'FILL' 1;">school</span>
+                    LearnHub
+                </a>
+<nav class="hidden md:flex gap-6 h-full items-center">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors h-full flex items-center hover:bg-surface-container-low dark:hover:bg-surface-container-high px-4 rounded-xl scale-98 active:scale-95 duration-200" href="#">Courses</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors h-full flex items-center hover:bg-surface-container-low dark:hover:bg-surface-container-high px-4 rounded-xl scale-98 active:scale-95 duration-200" href="#">Mentors</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors h-full flex items-center hover:bg-surface-container-low dark:hover:bg-surface-container-high px-4 rounded-xl scale-98 active:scale-95 duration-200" href="#">Pricing</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors h-full flex items-center hover:bg-surface-container-low dark:hover:bg-surface-container-high px-4 rounded-xl scale-98 active:scale-95 duration-200" href="#">Resources</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary font-label-md px-4 py-2 rounded-full hover:bg-surface-container-low transition-colors hidden md:block">Login</button>
+<button class="bg-primary text-on-primary font-label-md px-6 py-2 rounded-full shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">Register</button>
+<button class="md:hidden text-on-surface p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center py-lg px-gutter max-w-container-max mx-auto w-full">
+<!-- Header & Stepper -->
+<div class="w-full max-w-4xl mb-12">
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg-mobile md:font-display-lg text-on-background mb-4">Create New Course</h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-8">Start by defining the core identity of your course. This information helps students find and understand your offering.</p>
+<!-- Stepper -->
+<div class="relative w-full">
+<!-- Progress Line Background -->
+<div class="absolute top-1/2 left-0 w-full h-2 bg-surface-container-highest rounded-full -translate-y-1/2 z-0 hidden sm:block"></div>
+<!-- Active Progress Line -->
+<div class="absolute top-1/2 left-0 w-1/5 h-2 bg-secondary rounded-full -translate-y-1/2 z-0 hidden sm:block transition-all duration-500"></div>
+<div class="flex justify-between relative z-10 overflow-x-auto sm:overflow-visible pb-4 sm:pb-0 custom-scrollbar gap-4 sm:gap-0">
+<!-- Step 1: Active -->
+<div class="flex flex-col items-center min-w-[80px]">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-label-md shadow-md mb-2 ring-4 ring-background">
+                            1
+                        </div>
+<span class="text-label-caps font-label-caps text-secondary whitespace-nowrap">Basic Info</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center min-w-[80px] opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-md mb-2 ring-4 ring-background">
+                            2
+                        </div>
+<span class="text-label-caps font-label-caps text-on-surface-variant whitespace-nowrap">Media</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center min-w-[80px] opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-md mb-2 ring-4 ring-background">
+                            3
+                        </div>
+<span class="text-label-caps font-label-caps text-on-surface-variant whitespace-nowrap">Learning</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center min-w-[80px] opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-md mb-2 ring-4 ring-background">
+                            4
+                        </div>
+<span class="text-label-caps font-label-caps text-on-surface-variant whitespace-nowrap">Pricing</span>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center min-w-[80px] opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-md mb-2 ring-4 ring-background">
+                            5
+                        </div>
+<span class="text-label-caps font-label-caps text-on-surface-variant whitespace-nowrap">Curriculum</span>
+</div>
+<!-- Step 6 -->
+<div class="flex flex-col items-center min-w-[80px] opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-label-md mb-2 ring-4 ring-background">
+                            6
+                        </div>
+<span class="text-label-caps font-label-caps text-on-surface-variant whitespace-nowrap">Review</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Form Card -->
+<div class="w-full max-w-4xl bg-surface-container-lowest rounded-[24px] border border-outline-variant/30 shadow-sm p-6 md:p-10 relative overflow-hidden">
+<!-- Decorative gradient orb -->
+<div class="absolute -top-32 -right-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<form action="#" class="flex flex-col gap-8 relative z-10" method="POST">
+<!-- Section 1: Title & Subtitle -->
+<div class="flex flex-col gap-6 border-b border-outline-variant/20 pb-8">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface mb-2">Core Identity</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Provide a compelling title and subtitle to attract students.</p>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface" for="course-title">Course Title *</label>
+<input class="w-full bg-surface-container-lowest border-1.5 border-outline-variant rounded-xl px-4 py-3 text-body-md font-body-md text-on-surface placeholder:text-outline focus:border-primary focus:ring-0 form-input-focus transition-all shadow-sm" id="course-title" name="course-title" placeholder="e.g., Advanced UI/UX Design Masterclass" type="text"/>
+<p class="text-label-caps font-label-caps text-outline text-right mt-1">0/60</p>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface" for="course-subtitle">Course Subtitle</label>
+<input class="w-full bg-surface-container-lowest border-1.5 border-outline-variant rounded-xl px-4 py-3 text-body-md font-body-md text-on-surface placeholder:text-outline focus:border-primary focus:ring-0 form-input-focus transition-all shadow-sm" id="course-subtitle" name="course-subtitle" placeholder="A brief summary of what students will achieve" type="text"/>
+<p class="text-label-caps font-label-caps text-outline text-right mt-1">0/120</p>
+</div>
+</div>
+<!-- Section 2: Description -->
+<div class="flex flex-col gap-6 border-b border-outline-variant/20 pb-8">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface mb-2">Detailed Description</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Explain what your course covers and who it's for.</p>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface" for="course-description">Course Description *</label>
+<div class="border border-outline-variant rounded-xl overflow-hidden shadow-sm bg-surface-container-lowest focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10 transition-all">
+<!-- Basic RTF Toolbar Placeholder -->
+<div class="bg-surface-container flex gap-2 p-2 border-b border-outline-variant">
+<button class="p-1.5 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[18px]" data-icon="format_bold">format_bold</span></button>
+<button class="p-1.5 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[18px]" data-icon="format_italic">format_italic</span></button>
+<button class="p-1.5 rounded hover:bg-surface-container-high text-on-surface-variant transition-colors" type="button"><span class="material-symbols-outlined text-[18px]" data-icon="format_list_bulleted">format_list_bulleted</span></button>
+</div>
+<textarea class="w-full border-none px-4 py-3 text-body-md font-body-md text-on-surface placeholder:text-outline focus:ring-0 resize-y min-h-[150px] bg-transparent" id="course-description" name="course-description" placeholder="Start typing your description here..." rows="5"></textarea>
+</div>
+</div>
+</div>
+<!-- Section 3: Taxonomy -->
+<div class="flex flex-col gap-6">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface mb-2">Categorization</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Help students filter and find your course in the directory.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Category -->
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface" for="course-category">Category *</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border-1.5 border-outline-variant rounded-xl pl-4 pr-10 py-3 text-body-md font-body-md text-on-surface appearance-none focus:border-primary focus:ring-0 form-input-focus transition-all shadow-sm cursor-pointer" id="course-category" name="course-category">
+<option disabled="" selected="" value="">Select category</option>
+<option value="design">Design</option>
+<option value="development">Development</option>
+<option value="business">Business</option>
+<option value="marketing">Marketing</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Level -->
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface" for="course-level">Level *</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border-1.5 border-outline-variant rounded-xl pl-4 pr-10 py-3 text-body-md font-body-md text-on-surface appearance-none focus:border-primary focus:ring-0 form-input-focus transition-all shadow-sm cursor-pointer" id="course-level" name="course-level">
+<option disabled="" selected="" value="">Select level</option>
+<option value="beginner">Beginner</option>
+<option value="intermediate">Intermediate</option>
+<option value="advanced">Advanced</option>
+<option value="all">All Levels</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+</div>
+<!-- Language -->
+<div class="flex flex-col gap-2">
+<label class="text-label-md font-label-md text-on-surface" for="course-language">Language *</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border-1.5 border-outline-variant rounded-xl pl-4 pr-10 py-3 text-body-md font-body-md text-on-surface appearance-none focus:border-primary focus:ring-0 form-input-focus transition-all shadow-sm cursor-pointer" id="course-language" name="course-language">
+<option selected="" value="english">English</option>
+<option value="spanish">Spanish</option>
+<option value="french">French</option>
+<option value="german">German</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline pointer-events-none" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex justify-end gap-4 mt-8 pt-6 border-t border-outline-variant/20">
+<button class="px-6 py-3 rounded-full text-primary bg-surface-container hover:bg-surface-container-high font-label-md transition-colors" type="button">
+                        Cancel
+                    </button>
+<button class="px-8 py-3 rounded-[16px] bg-primary text-on-primary font-label-md shadow-[0_10px_15px_-3px_rgba(59,130,246,0.2)] hover:shadow-[0_10px_15px_-3px_rgba(59,130,246,0.3)] hover:-translate-y-0.5 transition-all flex items-center gap-2" type="button">
+                        Next Step
+                        <span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface font-body-sm text-body-sm text-primary dark:text-primary-fixed full-width bottom mt-auto border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter py-lg max-w-container-max mx-auto gap-6 md:gap-0">
+<div class="text-headline-sm font-headline-sm font-bold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="school" style="font-variation-settings: 'FILL' 1;">school</span>
+                LearnHub
+            </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline decoration-2 transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline decoration-2 transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline decoration-2 transition-all opacity-80 hover:opacity-100" href="#">Cookie Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary hover:underline decoration-2 transition-all opacity-80 hover:opacity-100" href="#">Support</a>
+</div>
+<div class="text-on-surface-variant text-body-sm">
+                © 2024 LearnHub. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

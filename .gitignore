@@ -5,4 +5,5 @@ build
 .DS_Store
 master.txt
 docs/
-
+download_stitch.js
+phases.txt

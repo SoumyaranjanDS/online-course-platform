@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LearnHub - Explore All Courses</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#a36700",
+                    "primary-fixed": "#d8e2ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "outline": "#727785",
+                    "tertiary": "#825100",
+                    "on-primary-fixed": "#001a42",
+                    "secondary-container": "#6cf8bb",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#006c49",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-tint": "#005ac2",
+                    "on-primary-fixed-variant": "#004395",
+                    "background": "#f8f9ff",
+                    "primary-fixed-dim": "#adc6ff",
+                    "error-container": "#ffdad6",
+                    "primary": "#0058be",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-surface-variant": "#424754",
+                    "outline-variant": "#c2c6d6",
+                    "on-primary-container": "#fefcff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-secondary-fixed": "#002113",
+                    "on-tertiary-container": "#fffbff",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-tertiary-fixed": "#2a1700",
+                    "surface-container": "#e5eeff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffddb8",
+                    "inverse-surface": "#213145",
+                    "surface-bright": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "inverse-primary": "#adc6ff",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "on-surface": "#0b1c30",
+                    "secondary-fixed": "#6ffbbe",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#00714d",
+                    "on-background": "#0b1c30",
+                    "primary-container": "#2170e4",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "80px",
+                    "xs": "4px",
+                    "md": "24px",
+                    "container-max": "1280px",
+                    "base": "8px",
+                    "gutter": "24px",
+                    "sm": "12px",
+                    "lg": "48px"
+            },
+            "fontFamily": {
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-sm": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "display-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "display-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-sm": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "30px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-caps": [
+                            "12px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+        },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-md">
+<span class="text-headline-sm font-headline-sm font-bold text-primary">LearnHub</span>
+<div class="hidden md:flex relative ml-lg">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-1.5 border-outline-variant rounded-full text-body-sm focus:border-primary focus:ring-2 focus:ring-primary-fixed-dim outline-none transition-all w-64" placeholder="Search courses..." type="text"/>
+</div>
+</div>
+<nav class="hidden md:flex gap-lg">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 text-label-md" href="#">Courses</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Mentors</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Pricing</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors text-label-md" href="#">Resources</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="px-4 py-2 text-primary bg-surface hover:bg-surface-container-low rounded-lg text-label-md font-bold transition-all scale-98 active:scale-95 duration-200">Login</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-[16px] text-label-md font-bold hover:bg-on-primary-fixed-variant transition-all card-shadow scale-98 active:scale-95 duration-200">Register</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full px-gutter max-w-container-max mx-auto py-lg grid grid-cols-1 md:grid-cols-12 gap-xl">
+<!-- Sidebar Filters -->
+<aside class="md:col-span-3 space-y-md">
+<div>
+<h2 class="text-headline-sm font-headline-sm mb-sm text-on-background">Explore All Courses</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Discover the perfect course to advance your skills.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md">
+<h3 class="text-label-md font-label-md mb-4 text-on-background">Filters</h3>
+<!-- Category Filter -->
+<div class="mb-sm">
+<label class="block text-label-caps font-label-caps text-on-surface-variant mb-2">CATEGORY</label>
+<div class="space-y-2">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="text-body-sm font-body-sm text-on-surface">Design (120)</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="text-body-sm font-body-sm text-on-surface">Technology (85)</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded text-primary focus:ring-primary border-outline-variant" type="checkbox"/>
+<span class="text-body-sm font-body-sm text-on-surface">Business (40)</span>
+</label>
+</div>
+</div>
+<!-- Level Filter -->
+<div class="mb-sm">
+<label class="block text-label-caps font-label-caps text-on-surface-variant mb-2">LEVEL</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-2 text-body-sm font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>All Levels</option>
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Advanced</option>
+</select>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<div class="md:col-span-9 space-y-md">
+<!-- Search & Sort Bar -->
+<div class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-surface-container-lowest border border-outline-variant rounded-xl p-4">
+<div class="relative w-full sm:w-1/2">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface border border-outline-variant rounded-full text-body-sm font-body-sm focus:border-primary focus:ring-2 focus:ring-primary-fixed-dim outline-none transition-all" placeholder="Find specific topics..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-body-sm font-body-sm text-on-surface-variant">Sort by:</span>
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg p-2 text-body-sm font-body-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none cursor-pointer">
+<option>Most Popular</option>
+<option>Newest</option>
+<option>Highest Rated</option>
+<option>Price: Low to High</option>
+</select>
+</div>
+</div>
+<!-- Course Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Course Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container-low card-shadow card-hover transition-all duration-300 flex flex-col overflow-hidden">
+<div class="bg-cover bg-center w-full h-40 rounded-t-[24px]" data-alt="A modern web development workspace showing a sleek laptop displaying complex code, soft pastel high-key lighting, corporate minimalist aesthetic, bright white desk, subtle blue and green accent colors." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4OycH2aRKCcv3I2rgXB8na6BHBNiB6BAhgEbIUZOvAA-CrRfjFRkhuYVS_aC1_K8YNO2P5uYmbbYAJe8aqfkamnAC6Si_jDuiv42qwYh24xDmAqWc55B_FURKSUmMLi_Uelf6IWXetFqe0DPHU3lw6J1x5NWHewP5R-o5QtPRLo4Qh2j4uJuRpFYypXA08C7FxnujUdOOcz8e1UXLh3tVvWtGczHlGfVqbGHjDL_XMhNlhKB4gJhbE3JF8eQGlraBHTODh0sxS7Q')"></div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded-full text-label-caps font-label-caps">Technology</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" data-weight="fill">star</span> 4.8 (1.2k)</span>
+</div>
+<h4 class="text-body-lg font-body-lg font-bold text-on-surface mb-2 line-clamp-2">Advanced Frontend Patterns &amp; Architecture</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4 line-clamp-2">Master scalable web applications with modern frameworks.</p>
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-outline-variant">
+<span class="text-headline-sm font-headline-sm text-primary font-bold">$129</span>
+<button class="px-4 py-2 bg-primary-container text-on-primary-container rounded-[16px] text-label-md font-bold hover:bg-primary hover:text-on-primary transition-colors">Enroll</button>
+</div>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container-low card-shadow card-hover transition-all duration-300 flex flex-col overflow-hidden">
+<div class="bg-cover bg-center w-full h-40 rounded-t-[24px]" data-alt="A beautiful UI/UX design mockup on a tablet, floating in a clean white studio space, soft natural lighting, modern corporate soft minimalism, pastel UI elements visible." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC-5I-bqgfPLi4WNNxk1_enVhW8x_jYH1U-puojP7uObwfpLGmRQIDRy9aJTJM7E4LAp-xwQ-eMIkuTi8EcTYTKErK4i_oR4-i8VZOfXS3MGEr2uDAmdgTNafU5vfPPzACkSQIhPeK1o7hsSHsHludTvGswd6f0pOEq3Y0DxZKXorWyUUm4Sqn4OBa3yYIpYZ3pOazFgtNzF-8noJ1fzcPlaJkYc4tF5ZcRcGfOWFfbbSXajg-yx6uKSOUsCozQk1Yq-dmInBpfZ18')"></div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary-fixed text-on-primary-fixed px-2 py-1 rounded-full text-label-caps font-label-caps">Design</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" data-weight="fill">star</span> 4.9 (850)</span>
+</div>
+<h4 class="text-body-lg font-body-lg font-bold text-on-surface mb-2 line-clamp-2">UI/UX Design Masterclass</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4 line-clamp-2">Create intuitive and visually stunning user interfaces.</p>
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-outline-variant">
+<span class="text-headline-sm font-headline-sm text-primary font-bold">$99</span>
+<button class="px-4 py-2 bg-primary-container text-on-primary-container rounded-[16px] text-label-md font-bold hover:bg-primary hover:text-on-primary transition-colors">Enroll</button>
+</div>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container-low card-shadow card-hover transition-all duration-300 flex flex-col overflow-hidden">
+<div class="bg-cover bg-center w-full h-40 rounded-t-[24px]" data-alt="A clean analytics dashboard displaying growth charts and data visualization, glowing softly on a monitor, bright corporate setting, soft minimalism, blue and teal data points." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRQgkTL8S2hhHyHQQ-a_rhr05lwW93KV_lhhjEbFN4rfWW22fPxkjJ8K0iwYHC8hVC3nxY4-BOMi7uBvfkQxJnSo4jy47zW70tZWTMhlm46bD65ihre9p6P8YQicAB_cZJqHVtcwyuSNKzfgRZ_OQk_beIOdsL2LXtLYwE9aKlyofLy42_NIR7ngNbtY3ptXmx2nnZ4XbtrwS7HbSGIVH9RglNe94hZPEmuRe3pqM7M6ZyA91E661o181y_3ixU8BL2lgZeiKqhrg')"></div>
+<div class="p-md flex flex-col flex-grow">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded-full text-label-caps font-label-caps">Business</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-tertiary-fixed-dim" data-weight="fill">star</span> 4.7 (520)</span>
+</div>
+<h4 class="text-body-lg font-body-lg font-bold text-on-surface mb-2 line-clamp-2">Data-Driven Decision Making</h4>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-4 line-clamp-2">Leverage analytics to drive business growth effectively.</p>
+<div class="mt-auto flex items-center justify-between pt-4 border-t border-outline-variant">
+<span class="text-headline-sm font-headline-sm text-primary font-bold">$149</span>
+<button class="px-4 py-2 bg-primary-container text-on-primary-container rounded-[16px] text-label-md font-bold hover:bg-primary hover:text-on-primary transition-colors">Enroll</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-2 mt-lg">
+<button class="p-2 rounded-lg bg-surface hover:bg-surface-container-low text-on-surface-variant transition-colors disabled:opacity-50"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="w-10 h-10 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center">1</button>
+<button class="w-10 h-10 rounded-lg bg-surface hover:bg-surface-container-low text-on-surface-variant font-label-md text-label-md transition-colors flex items-center justify-center">2</button>
+<button class="w-10 h-10 rounded-lg bg-surface hover:bg-surface-container-low text-on-surface-variant font-label-md text-label-md transition-colors flex items-center justify-center">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="w-10 h-10 rounded-lg bg-surface hover:bg-surface-container-low text-on-surface-variant font-label-md text-label-md transition-colors flex items-center justify-center">8</button>
+<button class="p-2 rounded-lg bg-surface hover:bg-surface-container-low text-on-surface-variant transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter py-lg max-w-container-max mx-auto gap-4">
+<span class="text-headline-sm font-headline-sm font-bold text-primary">LearnHub</span>
+<div class="flex flex-wrap justify-center gap-4 md:gap-md text-body-sm font-body-sm">
+<a class="text-on-surface-variant hover:text-primary hover:underline decoration-2 transition-all" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary hover:underline decoration-2 transition-all" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary hover:underline decoration-2 transition-all" href="#">Cookie Policy</a>
+<a class="text-on-surface-variant hover:text-primary hover:underline decoration-2 transition-all" href="#">Support</a>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant opacity-80">© 2024 LearnHub. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

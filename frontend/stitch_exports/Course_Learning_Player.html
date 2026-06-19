@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LearnHub - Course Player</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#a36700",
+                        "primary-fixed": "#d8e2ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "outline": "#727785",
+                        "tertiary": "#825100",
+                        "on-primary-fixed": "#001a42",
+                        "secondary-container": "#6cf8bb",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#006c49",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface-tint": "#005ac2",
+                        "on-primary-fixed-variant": "#004395",
+                        "background": "#f8f9ff",
+                        "primary-fixed-dim": "#adc6ff",
+                        "error-container": "#ffdad6",
+                        "primary": "#0058be",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-surface-variant": "#424754",
+                        "outline-variant": "#c2c6d6",
+                        "on-primary-container": "#fefcff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary-fixed": "#002113",
+                        "on-tertiary-container": "#fffbff",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-tertiary-fixed": "#2a1700",
+                        "surface-container": "#e5eeff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#ffddb8",
+                        "inverse-surface": "#213145",
+                        "surface-bright": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "inverse-primary": "#adc6ff",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed": "#6ffbbe",
+                        "error": "#ba1a1a",
+                        "on-secondary-container": "#00714d",
+                        "on-background": "#0b1c30",
+                        "primary-container": "#2170e4",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "80px",
+                        "xs": "4px",
+                        "md": "24px",
+                        "container-max": "1280px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "sm": "12px",
+                        "lg": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-caps": ["Inter"],
+                        "display-lg-mobile": ["Plus Jakarta Sans"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-md": ["30px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Distraction free transition */
+        .player-container {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body.distraction-free .sidebar {
+            transform: translateX(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        body.distraction-free .main-content {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        body.distraction-free .top-nav {
+            transform: translateY(-100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen overflow-x-hidden transition-colors duration-300">
+<!-- Top Navigation (Auto-hidden in distraction free mode) -->
+<header class="top-nav bg-surface dark:bg-surface-container shadow-sm flex justify-between items-center w-full px-gutter max-w-container-max mx-auto h-20 top-0 z-50 transition-transform duration-500 relative">
+<div class="flex items-center gap-md">
+<a class="flex items-center gap-2" href="#">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<span class="text-headline-sm font-headline-sm font-bold text-primary dark:text-primary-fixed tracking-tight">LearnHub</span>
+</a>
+<div class="hidden md:flex items-center gap-1 ml-lg">
+<a class="px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors font-label-md text-label-md rounded-lg hover:bg-surface-container-low" href="#">Courses</a>
+<a class="px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors font-label-md text-label-md rounded-lg hover:bg-surface-container-low" href="#">Mentors</a>
+<a class="px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors font-label-md text-label-md rounded-lg hover:bg-surface-container-low" href="#">Pricing</a>
+<a class="px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:text-primary transition-colors font-label-md text-label-md rounded-lg hover:bg-surface-container-low" href="#">Resources</a>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button aria-label="Search" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button aria-label="Notifications" class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-container-high cursor-pointer ml-2">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A close-up portrait of a professional adult learner smiling confidently in a bright, modern corporate setting. The lighting is soft and high-key, emphasizing approachability and expertise. The color palette features clean whites and subtle blue tones, fitting a reliable SaaS platform aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPlYyXgtaNEXJWw6yocfU4tWu-KIuFnbLGROmxl5uk-pu2tPjOFZefYmHexam6pR-cLHhxz_3WteBuqEtyUy0Va6pHNVv4kSOnL4IbVnEP-S04qRPCKMMoKGFENY-M-dpIqILBBAYEgBxBOVNPVkFtliFesKtW9u1wBo8FjuPghbua8Uj4I0yb17o5LE4Q6X9XitHnU-Fz3xkJgEAnoXK4T4PLNhWnrTURQzttv2a_Gyz6Cq6YYKIFiIUokcH9OvBLn6mMUbBXO2g"/>
+</div>
+</div>
+</header>
+<!-- Main Course Layout -->
+<div class="flex w-full h-[calc(100vh-80px)] player-container">
+<!-- Video Canvas -->
+<main class="main-content flex-1 flex flex-col transition-all duration-500 bg-background relative overflow-y-auto">
+<!-- Video Player Area -->
+<div class="w-full bg-inverse-surface relative group aspect-video">
+<div class="absolute inset-0 flex items-center justify-center">
+<!-- Placeholder for video -->
+<img alt="Video Placeholder" class="w-full h-full object-cover opacity-60" data-alt="A wide cinematic shot of a modern, minimalist digital classroom interface displayed on a sleek monitor. The screen shows a high-quality video presentation about advanced UX design principles. The environment is dark and focused, with a soft blue ambient glow reflecting off the desk, creating a professional and immersive learning mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvbSUnEbinUarHGbUX9qacMTVQFdQaipoB3amgP5d2yXAs6WsUoEELeZ3xEYD6q37g-KOVqCf17ud2FktqlqHGGDm2JeIQziXs1YPNo0N05iVB3ejW0CwdrglfhdkzRwotdfwgB91RDDZdCDsjt0zYgQ3ayO0oYuA1JFGNitCfrw9AsYWLCC6wf0ZPfPZ47uQANkL6JP04Dy8mCmfZrKcwv_MsEemoqvbmFKpenN48LlGpuA9H0D7N_T2k7iyaYV_1TMmw4cV8oRo"/>
+</div>
+<!-- Video Controls Overlay -->
+<div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col gap-2">
+<!-- Progress Bar -->
+<div class="w-full h-1 bg-white/30 rounded-full cursor-pointer relative">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-full w-[45%]"></div>
+<div class="absolute top-1/2 left-[45%] -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow"></div>
+</div>
+<!-- Controls -->
+<div class="flex items-center justify-between text-white mt-2">
+<div class="flex items-center gap-4">
+<button class="hover:text-primary-fixed transition-colors"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span></button>
+<button class="hover:text-primary-fixed transition-colors"><span class="material-symbols-outlined">volume_up</span></button>
+<span class="font-label-md text-sm text-white/80">04:23 / 12:45</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:text-primary-fixed transition-colors font-label-md text-sm">1x</button>
+<button class="hover:text-primary-fixed transition-colors"><span class="material-symbols-outlined">closed_caption</span></button>
+<button class="hover:text-primary-fixed transition-colors"><span class="material-symbols-outlined">settings</span></button>
+<!-- Distraction Free Toggle -->
+<button class="hover:text-primary-fixed transition-colors ml-2" id="distraction-toggle" title="Distraction Free Mode">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Area Below Video -->
+<div class="max-w-container-max mx-auto w-full px-gutter py-lg flex-1">
+<div class="flex justify-between items-start mb-6">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="font-label-caps text-label-caps text-primary tracking-wider uppercase">Module 2 • Lesson 3</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-2">Advanced Component Architecture</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-3xl">Learn how to build scalable, reusable components using modern design system principles. We'll cover state management, prop drilling, and compositional patterns.</p>
+</div>
+<div class="flex gap-3">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" title="Save Lesson">
+<span class="material-symbols-outlined">bookmark_border</span>
+</button>
+<button class="px-6 py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors shadow-sm active:scale-95 flex items-center gap-2">
+<span>Next Lesson</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Tabs -->
+<div class="border-b border-outline-variant mb-6 flex gap-8">
+<button class="pb-3 border-b-2 border-primary text-primary font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">info</span>
+                        About
+                    </button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">folder_open</span>
+                        Resources
+                    </button>
+<button class="pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">edit_note</span>
+                        Notes
+                    </button>
+</div>
+<!-- Tab Content: About -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="md:col-span-2 space-y-6">
+<div class="bg-surface-container-lowest border border-surface-container-low rounded-2xl p-6 shadow-sm">
+<h3 class="font-headline-sm text-lg text-on-surface mb-4">In this lesson</h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span class="font-body-md text-on-surface-variant">Understanding the difference between presentation and container components.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span class="font-body-md text-on-surface-variant">Implementing the composition root pattern to avoid prop drilling.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<span class="font-body-md text-on-surface-variant">Building a flexible Card component from scratch using Tailwind CSS utility classes.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Instructor Info -->
+<div class="md:col-span-1">
+<div class="bg-surface-container-low rounded-2xl p-6">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">Instructor</h4>
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img alt="Instructor Profile" class="w-full h-full object-cover" data-alt="A professional headshot of an experienced male tech instructor with a friendly smile. He is wearing a clean navy blue shirt. The background is a soft, blurred modern office with light filtering through glass panels, conveying a warm, approachable expertise consistent with modern corporate e-learning platforms." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSyzQW1cfOMMGH7JzwAGL5nxOuWZV6N4BpXO7V5IKAebOtbaC3sKDX8fDE7z8k2iT3SzfDiesEdpsZgs0d9Di1cs0c4-et3hsDwdj_1-24WTkDdJWTIeb39B6aUv15972TqqgyQoMqE8GwyOrq9ZtRMHbjy_W4kTdOIsYeog3dbu-Jy8lEdBUADLZ_hPO4CAJvRhC3Wg6zfR2mPBzpmVwEhknwOssp86frXiPy0Nw5MvbearVhWBhi5_LGP1cEgu9aesPzHX_n6bg"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Dr. Marcus Webb</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Senior Lead Engineer</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">Marcus has over 15 years of experience building large-scale applications and design systems for Fortune 500 companies.</p>
+<button class="w-full py-2 rounded-lg border border-outline-variant text-primary font-label-md text-label-md hover:bg-surface-container-high transition-colors">View Profile</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sidebar Curriculum -->
+<aside class="sidebar w-80 bg-surface-container-lowest border-l border-outline-variant h-full flex flex-col transition-transform duration-500 flex-shrink-0 z-40 hidden md:flex">
+<div class="p-6 border-b border-outline-variant">
+<h2 class="font-headline-sm text-lg text-on-surface mb-2">Modern React Patterns</h2>
+<div class="flex items-center justify-between mb-2">
+<span class="font-body-sm text-on-surface-variant">45% Complete</span>
+<span class="font-body-sm text-primary font-medium">12/26 Lessons</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full w-[45%]"></div>
+</div>
+</div>
+<!-- Curriculum Scroll Area -->
+<div class="flex-1 overflow-y-auto p-4 space-y-4">
+<!-- Phase 1 (Completed) -->
+<div>
+<button class="w-full flex items-center justify-between p-2 hover:bg-surface-container-low rounded-lg transition-colors group">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant group-hover:text-on-surface">expand_more</span>
+<span class="font-label-md text-label-md text-on-surface">1. The Fundamentals</span>
+</div>
+<span class="font-body-sm text-on-surface-variant">4/4</span>
+</button>
+<!-- Collapsed content omitted for brevity, indicated by expand icon -->
+</div>
+<!-- Phase 2 (Active) -->
+<div>
+<button class="w-full flex items-center justify-between p-2 hover:bg-surface-container-low rounded-lg transition-colors group mb-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant group-hover:text-on-surface transform rotate-180">expand_more</span>
+<span class="font-label-md text-label-md text-on-surface">2. Component Architecture</span>
+</div>
+<span class="font-body-sm text-on-surface-variant">1/5</span>
+</button>
+<div class="pl-6 space-y-1">
+<!-- Completed Lesson -->
+<a class="flex items-start gap-3 p-2 rounded-lg hover:bg-surface-container-low transition-colors group" href="#">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-secondary text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface">Introduction to Composition</p>
+<p class="font-body-sm text-xs text-on-surface-variant">08:15</p>
+</div>
+</a>
+<!-- Active Lesson -->
+<a class="flex items-start gap-3 p-2 rounded-lg bg-primary-container/10 border border-primary/20 transition-colors" href="#">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Advanced Component Architecture</p>
+<p class="font-body-sm text-xs text-primary/80">12:45</p>
+</div>
+</a>
+<!-- Locked/Upcoming Lesson -->
+<a class="flex items-start gap-3 p-2 rounded-lg hover:bg-surface-container-low transition-colors group opacity-60" href="#">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-outline text-lg">lock</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Prop Types and Interfaces</p>
+<p class="font-body-sm text-xs text-on-surface-variant">10:30</p>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2 rounded-lg hover:bg-surface-container-low transition-colors group opacity-60" href="#">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-outline text-lg">lock</span>
+</div>
+<div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Error Boundaries</p>
+<p class="font-body-sm text-xs text-on-surface-variant">05:45</p>
+</div>
+</a>
+</div>
+</div>
+<!-- Phase 3 (Locked) -->
+<div>
+<button class="w-full flex items-center justify-between p-2 hover:bg-surface-container-low rounded-lg transition-colors group opacity-60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-on-surface-variant">chevron_right</span>
+<span class="font-label-md text-label-md text-on-surface-variant">3. State Management</span>
+</div>
+<span class="font-body-sm text-on-surface-variant">0/8</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+<script>
+        // Simple Distraction Free Toggle Logic
+        document.getElementById('distraction-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('distraction-free');
+            
+            const icon = this.querySelector('.material-symbols-outlined');
+            if (document.body.classList.contains('distraction-free')) {
+                icon.textContent = 'fullscreen_exit';
+            } else {
+                icon.textContent = 'fullscreen';
+            }
+        });
+    </script>
+</body></html>
