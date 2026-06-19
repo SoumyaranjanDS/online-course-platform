@@ -1,3 +1,0 @@
-# PROJECT_STRUCTURE
-
-Placeholder for PROJECT_STRUCTURE.md

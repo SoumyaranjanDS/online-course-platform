@@ -1,3 +1,0 @@
-# SECURITY_NOTES
-
-Placeholder for SECURITY_NOTES.md
