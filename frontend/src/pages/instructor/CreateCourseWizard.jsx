@@ -128,9 +128,9 @@ export default function CreateCourseWizard() {
     <div className="bg-background text-on-background font-body-md min-h-screen flex flex-col">
       {/* TopNavBar Simplified */}
       <header className="bg-surface dark:bg-surface-container shadow-sm h-20 w-full flex items-center px-gutter">
-        <Link to="/instructor/dashboard" className="text-primary font-bold flex items-center gap-2">
-          <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
-          LearnHub
+        <Link to="/instructor/dashboard" className="text-primary font-bold flex items-center gap-2 text-headline-sm">
+          <img src="/logo.png" alt="Skillwell" className="h-8 w-auto object-contain" />
+          Skillwell
         </Link>
       </header>
 

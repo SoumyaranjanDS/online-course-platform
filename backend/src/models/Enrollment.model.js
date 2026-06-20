@@ -37,6 +37,14 @@ const enrollmentSchema = new mongoose.Schema(
     stripeSessionId: {
       type: String,
     },
+    expiresAt: {
+      type: Date,
+      default: null,
+    },
+    amountPaid: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

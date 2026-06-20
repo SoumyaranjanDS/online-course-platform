@@ -46,8 +46,9 @@ export default function CoursePlayer() {
         }
       } catch (error) {
         console.error("Failed to load course player:", error);
-        toast.error("Failed to load course content. Are you enrolled?");
-        navigate("/student/dashboard");
+        const errorMsg = error.response?.data?.message || "Failed to load course content. Are you enrolled?";
+        toast.error(errorMsg);
+        navigate("/student/courses");
       } finally {
         setLoading(false);
       }
@@ -245,6 +246,15 @@ export default function CoursePlayer() {
                       )}
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
+                      {!isCompleted(activeLesson._id) && (
+                        <button
+                          onClick={handleCompleteLesson}
+                          className="px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1 transition-all bg-emerald-100 text-emerald-700 hover:bg-emerald-200 border border-emerald-200 shadow-sm mr-2"
+                        >
+                          <CheckCircle className="w-4 h-4" />
+                          Mark Complete
+                        </button>
+                      )}
                       <button
                         onClick={goToPrevLesson}
                         disabled={!hasPrev}

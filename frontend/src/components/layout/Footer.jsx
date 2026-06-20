@@ -10,7 +10,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
           
           <div className="col-span-1 sm:col-span-2 lg:col-span-2 space-y-6">
-            <Link className="text-2xl font-bold text-primary tracking-tight" to="/">LearnHub</Link>
+            <Link className="flex items-center gap-2 text-2xl font-bold text-primary tracking-tight" to="/">
+              <img src="/logo.png" alt="Skillwell Logo" className="h-8 w-auto object-contain" />
+              Skillwell
+            </Link>
             <p className="text-base text-slate-600 leading-relaxed">
               Building the future of digital education, one lesson at a time. Join our community of lifelong learners.
             </p>
@@ -65,7 +68,7 @@ export default function Footer() {
         </div>
         
         <div className="pt-8 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-sm text-slate-500 font-medium">© {new Date().getFullYear()} LearnHub. All rights reserved.</p>
+          <p className="text-sm text-slate-500 font-medium">© {new Date().getFullYear()} Skillwell. All rights reserved.</p>
           
           <div className="flex items-center gap-8 text-sm text-slate-500 font-medium">
             <Link className="hover:text-primary transition-colors" to="/privacy">Privacy Policy</Link>

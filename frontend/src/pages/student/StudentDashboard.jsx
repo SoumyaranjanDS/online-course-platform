@@ -28,9 +28,10 @@ export default function StudentDashboard() {
       <StudentSidebar />
 
       {/* Main Content */}
-      <main className="flex-1 md:ml-72 pt-16 md:pt-0 p-4 md:p-8 max-w-[1280px] mx-auto w-full transition-all duration-300">
+      <main className="flex-1 md:ml-72 pt-16 md:pt-0 transition-all duration-300 min-w-0">
+        <div className="p-4 md:p-8 max-w-[1280px] mx-auto w-full">
         {loading ? (
-          <div className="flex justify-center items-center h-full">
+          <div className="flex justify-center items-center h-[calc(100vh-4rem)]">
             <p>Loading dashboard...</p>
           </div>
         ) : (
@@ -288,6 +289,7 @@ export default function StudentDashboard() {
           </>
         )}
         <div className="h-20 md:h-8"></div>
+        </div>
       </main>
     </div>
   );

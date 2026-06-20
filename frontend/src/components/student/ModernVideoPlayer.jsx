@@ -131,8 +131,9 @@ export default function ModernVideoPlayer({ videoUrl, courseId, lessonId, lesson
     // Auto-complete at 95%
     if (dur > 0 && current >= dur * 0.95 && !hasCompleted) {
       setHasCompleted(true);
-      syncProgress(current, dur, true);
-      if (onLessonComplete) onLessonComplete();
+      syncProgress(current, dur, true).then(() => {
+        if (onLessonComplete) onLessonComplete();
+      });
     }
   };
 

@@ -91,21 +91,50 @@ export const verifyCheckoutSession = asyncHandler(async (req, res, next) => {
       throw new ApiError(403, "Not authorized to verify this session");
     }
 
-    // Check if already verified to avoid duplicates for the SAME checkout session
     let enrollment = await Enrollment.findOne({ stripeSessionId: sessionId });
 
     if (!enrollment) {
-      // 1. Create Enrollment
-      enrollment = await Enrollment.create({
-        student: studentId,
-        course: courseId,
-        enrolledAt: new Date(),
-        status: "ACTIVE",
-        stripeSessionId: sessionId,
-      });
+      const course = await Course.findById(courseId);
+      
+      let expiresAt = null;
+      if (course.validityPeriod) {
+        expiresAt = new Date();
+        expiresAt.setMonth(expiresAt.getMonth() + course.validityPeriod);
+      }
+
+      // 1. Create Enrollment (handle potential concurrent duplicate requests)
+      try {
+        enrollment = await Enrollment.create({
+          student: studentId,
+          course: courseId,
+          enrolledAt: new Date(),
+          status: "ACTIVE",
+          stripeSessionId: sessionId,
+          expiresAt: expiresAt,
+          amountPaid: session.amount_total ? session.amount_total / 100 : 0,
+        });
+
+        // 1.5 Increment Course totalEnrollments and totalRevenue
+        await Course.findByIdAndUpdate(courseId, {
+          $inc: { 
+            totalEnrollments: 1,
+            totalRevenue: session.amount_total ? session.amount_total / 100 : 0
+          }
+        });
+      } catch (createErr) {
+        // If it's a duplicate key error (11000) for stripeSessionId, it means another request just created it.
+        // We can safely ignore and just return success.
+        if (createErr.code === 11000) {
+          return res.status(200).json({
+            success: true,
+            message: "Enrollment already verified",
+            courseId,
+          });
+        }
+        throw createErr;
+      }
 
       // 2. Initialize Progress Document
-      const course = await Course.findById(courseId);
       const totalLessons = course.modules.reduce(
         (acc, mod) => acc + mod.lessons.length,
         0

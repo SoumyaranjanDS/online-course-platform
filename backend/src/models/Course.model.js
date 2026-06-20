@@ -94,6 +94,10 @@ const courseSchema = new mongoose.Schema(
       min: 0,
       default: 0,
     },
+    validityPeriod: {
+      type: Number, // duration in months
+      default: null, // null means lifetime access
+    },
     thumbnailUrl: {
       type: String, // Cloudinary URL
       default: '',
@@ -118,6 +122,10 @@ const courseSchema = new mongoose.Schema(
       max: 5,
     },
     totalEnrollments: {
+      type: Number,
+      default: 0,
+    },
+    totalRevenue: {
       type: Number,
       default: 0,
     },

@@ -251,7 +251,7 @@ export default function BrowseCourses() {
                       </p>
                       <div className="mt-auto flex items-center justify-between pt-4 border-t border-outline-variant">
                         <span className="text-headline-sm font-headline-sm text-primary font-bold">
-                          {course.price === 0 ? 'Free' : `$${course.price.toFixed(2)}`}
+                          {course.price === 0 ? 'Free' : `₹${course.price.toFixed(2)}`}
                         </span>
                         <Link to={`/courses/${course._id}`} className="px-4 py-2 bg-primary-container text-on-primary-container rounded-[16px] text-label-md font-bold hover:bg-primary hover:text-on-primary transition-colors">
                           View

@@ -25,15 +25,15 @@ export default function InstructorDashboard() {
   }, []);
 
   const totalStudents = courses.reduce((sum, course) => sum + (course.totalEnrollments || 0), 0);
-  const totalRevenue = courses.reduce((sum, course) => sum + ((course.totalEnrollments || 0) * (course.price || 0)), 0);
+  const totalRevenue = courses.reduce((sum, course) => sum + (course.totalRevenue || 0), 0);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-surface text-on-surface w-full">
+    <div className="flex min-h-screen bg-surface text-on-surface w-full">
       <InstructorSidebar />
 
       {/* Main Content Canvas */}
-      <main className="flex-1 overflow-y-auto w-full bg-surface">
-        <div className="p-gutter md:p-lg max-w-container-max mx-auto space-y-8 pt-20 md:pt-8">
+      <main className="flex-1 overflow-y-auto md:ml-72 bg-surface min-w-0 pt-16 md:pt-0">
+        <div className="p-gutter md:p-lg max-w-container-max mx-auto space-y-8 md:pt-8">
           {/* Page Header */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
@@ -77,7 +77,7 @@ export default function InstructorDashboard() {
                 </div>
               </div>
               <p className="font-body-sm text-body-sm text-on-surface-variant mb-1">Total Revenue</p>
-              <h3 className="font-headline-md text-headline-md text-on-surface">${totalRevenue.toFixed(2)}</h3>
+              <h3 className="font-headline-md text-headline-md text-on-surface">₹{totalRevenue.toFixed(2)}</h3>
             </div>
 
             <div className="bg-surface-container-lowest border border-outline-variant/30 p-6 rounded-2xl hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-shadow">

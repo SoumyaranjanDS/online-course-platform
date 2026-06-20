@@ -22,6 +22,7 @@ export default function Step4Pricing({
 
       await courseService.updateCourse(courseId, {
         price: finalPrice,
+        validityPeriod: formData.validityPeriod ? Number(formData.validityPeriod) : null,
       });
       onNext();
     } catch (err) {
@@ -196,6 +197,47 @@ export default function Step4Pricing({
             </div>
           </div>
         )}
+      </div>
+
+      <div className="flex flex-col gap-8 border-b border-outline-variant/20 pb-8">
+        <div>
+          <h2 className="text-headline-sm font-headline-sm text-on-surface mb-2">
+            Course Expiration (Optional)
+          </h2>
+          <p className="text-body-sm font-body-sm text-on-surface-variant">
+            Set an automatic expiration for this course. After this period, students will no longer be able to access the course.
+          </p>
+        </div>
+
+        <div>
+          <label
+            className="block text-sm font-bold text-slate-950 mb-2"
+            htmlFor="validityPeriod"
+          >
+            Validity Period (in months)
+          </label>
+          <div className="relative">
+            <input
+              type="number"
+              id="validityPeriod"
+              name="validityPeriod"
+              min="1"
+              step="1"
+              value={formData.validityPeriod || ""}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  validityPeriod: e.target.value,
+                }))
+              }
+              placeholder="e.g., 6"
+              className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-lg font-bold text-slate-950 outline-none transition-all placeholder:text-slate-300 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+            />
+          </div>
+          <p className="mt-2 text-xs text-slate-500">
+            Leave blank for lifetime access. If set to 6, the course will expire 6 months after the student enrolls.
+          </p>
+        </div>
       </div>
 
       <div className="flex justify-between items-center mt-4 pt-4">

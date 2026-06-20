@@ -3,12 +3,14 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { studentService } from "../../services/studentService";
 import StudentSidebar from "../../components/layout/StudentSidebar";
+import CertificateModal from "../../components/student/CertificateModal";
 
 export default function StudentCourses() {
   const { user, logout } = useAuth();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCertificateCourse, setSelectedCertificateCourse] = useState(null);
 
   const filteredCourses = courses.filter(course => 
     course.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -29,6 +31,8 @@ export default function StudentCourses() {
           category: e.course.category || '',
           completionPercentage: e.completionPercentage || 0,
           lastAccessed: e.lastAccessed,
+          expiresAt: e.expiresAt,
+          instructor: e.course.instructor,
         }));
         setCourses(mapped);
       } catch (error) {
@@ -45,9 +49,10 @@ export default function StudentCourses() {
       <StudentSidebar />
 
       {/* Main Content */}
-      <main className="flex-1 md:ml-72 pt-16 md:pt-0 p-4 md:p-8 max-w-[1280px] mx-auto w-full transition-all duration-300">
+      <main className="flex-1 md:ml-72 pt-16 md:pt-0 transition-all duration-300 min-w-0">
+        <div className="p-4 md:p-8 max-w-[1280px] mx-auto w-full">
         {loading ? (
-          <div className="flex justify-center items-center h-full">
+          <div className="flex justify-center items-center h-[calc(100vh-4rem)]">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
           </div>
         ) : (
@@ -102,6 +107,11 @@ export default function StudentCourses() {
                           {course.category}
                         </div>
                       )}
+                      {course.expiresAt && new Date(course.expiresAt) < new Date() && (
+                        <div className="absolute top-4 right-4 bg-error text-on-error px-3 py-1 rounded-full font-label-caps text-label-caps shadow-sm uppercase">
+                          Expired
+                        </div>
+                      )}
                     </div>
                     <div className="p-6 flex flex-col justify-between flex-grow">
                       <div>
@@ -125,12 +135,30 @@ export default function StudentCourses() {
                           ></div>
                         </div>
                       </div>
-                      <Link
-                        to={`/student/course/${course.courseId}/learn`}
-                        className="w-full text-center bg-primary text-on-primary font-label-md text-label-md py-3 px-4 rounded-xl hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all hover:bg-primary/90 active:scale-95"
-                      >
-                        {course.completionPercentage === 0 ? "Start Learning" : "Resume Course"}
-                      </Link>
+                      {course.completionPercentage >= 100 && (
+                        <button
+                          onClick={() => setSelectedCertificateCourse(course)}
+                          className="w-full text-center bg-secondary-container text-on-secondary-container font-label-md text-label-md py-3 px-4 rounded-xl hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all active:scale-95 mb-2 border border-secondary"
+                        >
+                          View Certificate
+                        </button>
+                      )}
+
+                      {course.expiresAt && new Date(course.expiresAt) < new Date() ? (
+                        <button
+                          disabled
+                          className="w-full text-center bg-surface-variant text-on-surface-variant font-label-md text-label-md py-3 px-4 rounded-xl cursor-not-allowed opacity-70"
+                        >
+                          Course Expired
+                        </button>
+                      ) : (
+                        <Link
+                          to={`/student/course/${course.courseId}/learn`}
+                          className="w-full text-center bg-primary text-on-primary font-label-md text-label-md py-3 px-4 rounded-xl hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all hover:bg-primary/90 active:scale-95"
+                        >
+                          {course.completionPercentage >= 100 ? "Review Course" : course.completionPercentage === 0 ? "Start Learning" : "Resume Course"}
+                        </Link>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -158,7 +186,16 @@ export default function StudentCourses() {
             )}
           </>
         )}
+        </div>
       </main>
+
+      {/* Certificate Modal */}
+      {selectedCertificateCourse && (
+        <CertificateModal
+          course={selectedCertificateCourse}
+          onClose={() => setSelectedCertificateCourse(null)}
+        />
+      )}
     </div>
   );
 }

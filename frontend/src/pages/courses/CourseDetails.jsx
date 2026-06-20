@@ -212,7 +212,7 @@ export default function CourseDetails() {
             </div>
             <div className="p-md flex flex-col gap-sm">
               <div className="flex items-end gap-xs">
-                <span className="text-headline-md font-headline-md text-on-surface">${course.price?.toFixed(2) || '0.00'}</span>
+                <span className="text-headline-md font-headline-md text-on-surface">₹{course.price?.toFixed(2) || '0.00'}</span>
               </div>
               <button 
                 onClick={handleBuy}

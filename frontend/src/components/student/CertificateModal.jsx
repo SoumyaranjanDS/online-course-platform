@@ -75,66 +75,71 @@ export default function CertificateModal({ course, onClose }) {
           {/* Certificate Design Container */}
           <div 
             ref={certificateRef}
-            className="relative w-full aspect-[1.414/1] shadow-xl overflow-hidden shrink-0"
-            style={{ maxWidth: '1000px', backgroundColor: '#ffffff', color: '#1e293b' }}
+            className="relative w-full aspect-[1.414/1] shadow-2xl overflow-hidden shrink-0 bg-white"
+            style={{ maxWidth: '1000px', color: '#1e293b' }}
           >
-            {/* Background Decorations */}
-            <div className="absolute inset-0 border-[24px] border-double pointer-events-none" style={{ borderColor: '#e2e8f0' }}></div>
-            <div className="absolute inset-4 border pointer-events-none" style={{ borderColor: '#cbd5e1' }}></div>
+            {/* Elegant Background Pattern */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
             
-            <div className="absolute top-0 right-0 w-64 h-64 rounded-bl-full pointer-events-none mix-blend-multiply opacity-50" style={{ backgroundColor: '#ecfdf5' }}></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 rounded-tr-full pointer-events-none mix-blend-multiply opacity-50" style={{ backgroundColor: '#eff6ff' }}></div>
+            {/* Premium Borders */}
+            <div className="absolute inset-6 border-2 pointer-events-none" style={{ borderColor: '#0f766e' }}></div>
+            <div className="absolute inset-8 border pointer-events-none" style={{ borderColor: '#0f766e', opacity: 0.3 }}></div>
+
+            {/* Decorative Corner Elements */}
+            <div className="absolute top-0 left-0 w-32 h-32 pointer-events-none" style={{ background: 'linear-gradient(135deg, #0f766e 50%, transparent 50%)' }}></div>
+            <div className="absolute bottom-0 right-0 w-32 h-32 pointer-events-none" style={{ background: 'linear-gradient(-45deg, #0f766e 50%, transparent 50%)' }}></div>
 
             {/* Certificate Content */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-16 text-center z-10">
+            <div className="absolute inset-0 flex flex-col items-center p-12 text-center z-10 pt-16">
               
-              <div className="mb-8 flex items-center justify-center gap-3" style={{ color: '#047857' }}>
-                <Award className="w-12 h-12" />
-                <span className="text-2xl font-black tracking-widest uppercase">LearnHub</span>
+              <div className="mb-6 flex items-center justify-center gap-4">
+                <img src="/logo.png" alt="Skillwell Logo" className="h-10 w-auto object-contain" />
+                <span className="text-2xl font-black tracking-[0.2em] uppercase" style={{ color: '#0f766e' }}>Skillwell</span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl font-serif mb-4 tracking-wide" style={{ fontFamily: 'Georgia, serif', color: '#0f172a' }}>
+              <h1 className="text-4xl md:text-5xl font-serif mb-4 tracking-wide uppercase" style={{ fontFamily: 'Georgia, serif', color: '#1e293b' }}>
                 Certificate of Completion
               </h1>
               
-              <p className="text-lg md:text-xl tracking-widest uppercase mb-12" style={{ color: '#64748b' }}>
-                This is to certify that
+              <p className="text-base md:text-lg tracking-widest uppercase mb-6 font-medium" style={{ color: '#64748b' }}>
+                This is to proudly certify that
               </p>
 
-              <h2 className="text-4xl md:text-5xl font-bold mb-8 pb-4 border-b-2 inline-block px-16" style={{ color: '#0f172a', borderColor: '#e2e8f0' }}>
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 pb-2 border-b-2 inline-block px-16 font-serif italic" style={{ color: '#0f766e', borderColor: '#cbd5e1' }}>
                 {user?.name || 'Student Name'}
               </h2>
 
-              <p className="text-lg md:text-xl mb-4" style={{ color: '#475569' }}>
-                has successfully completed the course
+              <p className="text-base md:text-lg mb-4 font-medium" style={{ color: '#475569' }}>
+                has successfully completed the comprehensive program
               </p>
 
-              <h3 className="text-2xl md:text-3xl font-bold mb-16 max-w-3xl leading-snug" style={{ color: '#065f46' }}>
+              <h3 className="text-2xl md:text-3xl font-bold mb-8 max-w-4xl leading-tight" style={{ color: '#1e293b' }}>
                 {course?.title || 'Course Title'}
               </h3>
 
               {/* Signatures & Dates */}
-              <div className="w-full flex justify-between items-end px-12 mt-auto">
-                <div className="text-center">
-                  <div className="text-lg font-bold mb-2" style={{ color: '#1e293b' }}>{issueDate}</div>
-                  <div className="w-48 border-t pt-2 text-sm uppercase tracking-wider" style={{ borderColor: '#94a3b8', color: '#64748b' }}>
-                    Date of Issue
+              <div className="w-full flex justify-between items-end px-16 mt-auto pb-4">
+                <div className="text-center w-48">
+                  <div className="text-xl font-bold mb-2" style={{ color: '#1e293b' }}>{issueDate}</div>
+                  <div className="border-t pt-2 text-xs uppercase tracking-widest font-bold" style={{ borderColor: '#94a3b8', color: '#64748b' }}>
+                    Date Issued
                   </div>
                 </div>
 
-                <div className="w-32 h-32 flex items-center justify-center rounded-full border-4 transform rotate-12 shadow-sm" style={{ backgroundColor: '#ecfdf5', borderColor: '#d1fae5', color: '#047857' }}>
-                  <div className="text-center font-serif text-sm">
-                    <Award className="w-8 h-8 mx-auto mb-1" />
-                    <strong>Verified</strong><br/>Completion
+                <div className="w-32 h-32 flex items-center justify-center rounded-full border-[5px] transform rotate-[-15deg] shadow-lg bg-white shrink-0" style={{ borderColor: '#0f766e', color: '#0f766e' }}>
+                  <div className="text-center font-serif flex flex-col items-center justify-center">
+                    <Award className="w-8 h-8 mb-1" />
+                    <span className="text-[9px] font-black uppercase tracking-widest">Official</span>
+                    <span className="text-xs font-bold uppercase tracking-wider">Certified</span>
                   </div>
                 </div>
 
-                <div className="text-center">
-                  <div className="text-xl font-cursive mb-2 italic" style={{ fontFamily: 'cursive', color: '#1e293b' }}>
+                <div className="text-center w-48">
+                  <div className="text-xl font-bold mb-2 italic" style={{ fontFamily: 'Georgia, serif', color: '#1e293b' }}>
                     {course?.instructor?.name || 'Instructor'}
                   </div>
-                  <div className="w-48 border-t pt-2 text-sm uppercase tracking-wider" style={{ borderColor: '#94a3b8', color: '#64748b' }}>
-                    Course Instructor
+                  <div className="border-t pt-2 text-xs uppercase tracking-widest font-bold" style={{ borderColor: '#94a3b8', color: '#64748b' }}>
+                    Instructor
                   </div>
                 </div>
               </div>

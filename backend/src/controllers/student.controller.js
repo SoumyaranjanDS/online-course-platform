@@ -9,11 +9,16 @@ import { ApiError } from "../utils/ApiError.js";
 // @route   GET /api/student/dashboard
 // @access  Private (Student only)
 export const getStudentDashboard = asyncHandler(async (req, res, next) => {
-  const studentId = req.user.id;
+  const studentId = req.user._id;
 
-  // 1. Get stats
-  const totalEnrolled = await Enrollment.countDocuments({ student: studentId });
-  const totalCompleted = await Enrollment.countDocuments({ student: studentId, status: "COMPLETED" });
+  const totalEnrolled = await Enrollment.countDocuments({ 
+    student: studentId,
+    $or: [{ expiresAt: null }, { expiresAt: { $gt: new Date() } }]
+  });
+  const totalCompleted = await Enrollment.countDocuments({ 
+    student: studentId, 
+    status: "COMPLETED"
+  });
   
   // Assuming a Certificate model or logic exists, just mocking count for now
   // Or we can just use totalCompleted if every completion = certificate
@@ -21,7 +26,10 @@ export const getStudentDashboard = asyncHandler(async (req, res, next) => {
 
   // 2. Get active enrolled courses (with course details populated)
   // We'll limit to 3 for "Continue Learning" section
-  const enrollments = await Enrollment.find({ student: studentId })
+  const enrollments = await Enrollment.find({ 
+      student: studentId,
+      $or: [{ expiresAt: null }, { expiresAt: { $gt: new Date() } }]
+    })
     .sort({ lastAccessed: -1 })
     .limit(3)
     .populate({
@@ -47,8 +55,7 @@ export const getStudentDashboard = asyncHandler(async (req, res, next) => {
   const recentActivity = await ActivityLog.find({ student: studentId })
     .sort({ createdAt: -1 })
     .limit(5)
-    .populate("course", "title")
-    .populate("lesson", "title");
+    .populate("course", "title");
 
   res.status(200).json({
     success: true,
@@ -68,7 +75,7 @@ export const getStudentDashboard = asyncHandler(async (req, res, next) => {
 // @route   GET /api/student/courses
 // @access  Private (Student only)
 export const getEnrolledCourses = asyncHandler(async (req, res, next) => {
-  const enrollments = await Enrollment.find({ student: req.user.id })
+  const enrollments = await Enrollment.find({ student: req.user._id })
     .populate({
       path: "course",
       select: "title thumbnailUrl instructor price",
@@ -95,10 +102,14 @@ export const getCoursePlayerDetails = asyncHandler(async (req, res, next) => {
   const { courseId } = req.params;
   const studentId = req.user._id;
 
-  // 1. Verify enrollment (fetch latest)
   const enrollment = await Enrollment.findOne({ student: studentId, course: courseId }).sort({ enrolledAt: -1 });
   if (!enrollment) {
     throw new ApiError(403, "You are not enrolled in this course");
+  }
+
+  // Check expiration
+  if (enrollment.expiresAt && new Date(enrollment.expiresAt) < new Date()) {
+    throw new ApiError(403, "Your access to this course has expired.");
   }
 
   // 2. Fetch Course with modules and lessons

@@ -63,12 +63,12 @@ export default function InstructorCourses() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-surface text-on-surface w-full">
+    <div className="flex min-h-screen bg-surface text-on-surface w-full">
       <InstructorSidebar />
 
       {/* Main Content Canvas */}
-      <main className="flex-1 overflow-y-auto w-full bg-surface">
-        <div className="p-gutter md:p-lg max-w-container-max mx-auto space-y-8 pt-20 md:pt-8">
+      <main className="flex-1 overflow-y-auto md:ml-72 bg-surface min-w-0 pt-16 md:pt-0">
+        <div className="p-gutter md:p-lg max-w-container-max mx-auto space-y-8 md:pt-8">
           {/* Page Header */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
@@ -134,7 +134,7 @@ export default function InstructorCourses() {
                     
                     <div className="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
                       <div className="font-bold text-primary">
-                        ${course.price.toFixed(2)}
+                        ₹{course.price.toFixed(2)}
                       </div>
                       <div className="flex items-center gap-2">
                         <button 
