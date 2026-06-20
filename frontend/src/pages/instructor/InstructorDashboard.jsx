@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { courseService } from '../../services/courseService';
 import InstructorSidebar from '../../components/layout/InstructorSidebar';
+import Skeleton from '../../components/ui/Skeleton';
+import EmptyState from '../../components/ui/EmptyState';
 
 export default function InstructorDashboard() {
   const { user } = useAuth();
@@ -100,13 +102,20 @@ export default function InstructorDashboard() {
             </div>
             
             {loading ? (
-              <p>Loading courses...</p>
+              <div className="space-y-4 mt-4">
+                <Skeleton className="h-24 w-full rounded-xl" />
+                <Skeleton className="h-24 w-full rounded-xl" />
+                <Skeleton className="h-24 w-full rounded-xl" />
+              </div>
             ) : courses.length === 0 ? (
-              <div className="text-center py-8">
-                <p className="text-on-surface-variant mb-4">You haven't created any courses yet.</p>
-                <Link to="/instructor/course/create" className="text-primary hover:underline">
-                  Create your first course
-                </Link>
+              <div className="mt-4">
+                <EmptyState 
+                  icon="school" 
+                  title="No Courses Yet" 
+                  description="You haven't created any courses yet. Start building your first course and share your knowledge!" 
+                  actionText="Create Course" 
+                  actionLink="/instructor/course/create" 
+                />
               </div>
             ) : (
               <div className="space-y-4 flex-1">

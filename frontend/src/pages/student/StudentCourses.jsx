@@ -4,6 +4,8 @@ import { useAuth } from "../../hooks/useAuth";
 import { studentService } from "../../services/studentService";
 import StudentSidebar from "../../components/layout/StudentSidebar";
 import CertificateModal from "../../components/student/CertificateModal";
+import Skeleton from "../../components/ui/Skeleton";
+import EmptyState from "../../components/ui/EmptyState";
 
 export default function StudentCourses() {
   const { user, logout } = useAuth();
@@ -52,9 +54,15 @@ export default function StudentCourses() {
       <main className="flex-1 md:ml-72 pt-16 md:pt-0 transition-all duration-300 min-w-0">
         <div className="p-4 md:p-8 max-w-[1280px] mx-auto w-full">
         {loading ? (
-          <div className="flex justify-center items-center h-[calc(100vh-4rem)]">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="flex flex-col gap-4">
+                  <Skeleton className="h-48 w-full rounded-[24px]" />
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-4 w-1/2" />
+                </div>
+              ))}
+            </div>
         ) : (
           <>
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
@@ -164,24 +172,15 @@ export default function StudentCourses() {
                 ))}
               </div>
             ) : (
-              <div className="bg-surface-container-lowest border border-outline-variant p-12 rounded-[24px] text-center w-full max-w-2xl mx-auto mt-12">
-                <div className="w-20 h-20 bg-surface-container-high text-on-surface-variant rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="material-symbols-outlined text-4xl">
-                    school
-                  </span>
-                </div>
-                <h2 className="text-headline-sm text-on-surface mb-2 font-bold">
-                  No courses yet
-                </h2>
-                <p className="text-on-surface-variant mb-8 text-body-lg">
-                  You haven't enrolled in any courses. Browse our catalog to start your learning journey!
-                </p>
-                <Link
-                  to="/courses"
-                  className="bg-primary text-on-primary font-label-md py-3 px-8 rounded-xl inline-block hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all hover:scale-[1.02] active:scale-95"
-                >
-                  Explore Catalog
-                </Link>
+              <div className="mt-12">
+                <EmptyState 
+                  icon="school" 
+                  title={searchQuery ? "No courses found" : "No courses yet"} 
+                  description={searchQuery ? "No courses match your search criteria." : "You haven't enrolled in any courses. Browse our catalog to start your learning journey!"} 
+                  actionText={searchQuery ? "Clear Search" : "Explore Catalog"} 
+                  actionLink={searchQuery ? null : "/courses"}
+                  onClick={searchQuery ? () => setSearchQuery('') : null}
+                />
               </div>
             )}
           </>

@@ -4,6 +4,8 @@ import Navbar from '../../components/layout/Navbar';
 import Footer from '../../components/layout/Footer';
 import { publicService } from '../../services/publicService';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import Skeleton from '../../components/ui/Skeleton';
+import EmptyState from '../../components/ui/EmptyState';
 
 const CATEGORIES = [
   { value: 'design', label: 'Design' },
@@ -200,28 +202,25 @@ export default function BrowseCourses() {
             {loading ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
                 {[...Array(6)].map((_, i) => (
-                  <div key={i} className="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden animate-pulse">
-                    <div className="w-full h-40 bg-surface-container-high" />
+                  <div key={i} className="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+                    <Skeleton className="w-full h-40 rounded-none" />
                     <div className="p-md space-y-3">
-                      <div className="h-4 bg-surface-container-high rounded w-1/3" />
-                      <div className="h-5 bg-surface-container-high rounded w-full" />
-                      <div className="h-4 bg-surface-container-high rounded w-2/3" />
-                      <div className="h-10 bg-surface-container-high rounded w-full mt-4" />
+                      <Skeleton className="h-4 w-1/3" />
+                      <Skeleton className="h-5 w-full" />
+                      <Skeleton className="h-4 w-2/3" />
+                      <Skeleton className="h-10 w-full mt-4" />
                     </div>
                   </div>
                 ))}
               </div>
             ) : courses.length === 0 ? (
-              <div className="text-center py-16 bg-surface-container-lowest rounded-xl border border-outline-variant">
-                <span className="material-symbols-outlined text-[48px] text-on-surface-variant mb-4 block">search_off</span>
-                <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">No courses found</h3>
-                <p className="text-on-surface-variant mb-6">Try adjusting your search or filters.</p>
-                {hasActiveFilters && (
-                  <button onClick={clearFilters} className="text-primary font-bold hover:underline">
-                    Clear all filters
-                  </button>
-                )}
-              </div>
+              <EmptyState 
+                icon="search_off" 
+                title="No courses found" 
+                description="Try adjusting your search or filters." 
+                actionText={hasActiveFilters ? "Clear all filters" : null} 
+                onClick={hasActiveFilters ? clearFilters : null} 
+              />
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
                 {courses.map(course => (

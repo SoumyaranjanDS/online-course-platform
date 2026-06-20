@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { studentService } from "../../services/studentService";
 import StudentSidebar from "../../components/layout/StudentSidebar";
+import Skeleton from "../../components/ui/Skeleton";
+import EmptyState from "../../components/ui/EmptyState";
 
 export default function StudentDashboard() {
   const { user, logout } = useAuth();
@@ -31,8 +33,20 @@ export default function StudentDashboard() {
       <main className="flex-1 md:ml-72 pt-16 md:pt-0 transition-all duration-300 min-w-0">
         <div className="p-4 md:p-8 max-w-[1280px] mx-auto w-full">
         {loading ? (
-          <div className="flex justify-center items-center h-[calc(100vh-4rem)]">
-            <p>Loading dashboard...</p>
+          <div className="space-y-8">
+            <Skeleton className="h-48 w-full rounded-[24px]" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Skeleton className="h-28 w-full rounded-[24px]" />
+              <Skeleton className="h-28 w-full rounded-[24px]" />
+              <Skeleton className="h-28 w-full rounded-[24px]" />
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2 space-y-6">
+                <Skeleton className="h-40 w-full rounded-[24px]" />
+                <Skeleton className="h-40 w-full rounded-[24px]" />
+              </div>
+              <Skeleton className="h-64 w-full rounded-[24px]" />
+            </div>
           </div>
         ) : (
           <>
@@ -203,16 +217,14 @@ export default function StudentDashboard() {
                       ))}
                     </div>
                   ) : (
-                    <div className="bg-surface-container-lowest border border-outline-variant p-8 rounded-[24px] text-center">
-                      <p className="text-on-surface-variant mb-4">
-                        You aren't enrolled in any courses yet.
-                      </p>
-                      <Link
-                        to="/courses"
-                        className="text-primary hover:underline font-bold"
-                      >
-                        Find a course to start learning
-                      </Link>
+                    <div className="mt-4">
+                      <EmptyState 
+                        icon="school" 
+                        title="No Enrolled Courses" 
+                        description="You aren't enrolled in any courses yet. Browse our library and start learning!" 
+                        actionText="Browse Courses" 
+                        actionLink="/courses" 
+                      />
                     </div>
                   )}
                 </div>

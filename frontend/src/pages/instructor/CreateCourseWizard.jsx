@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { courseService } from '../../services/courseService';
+import toast from 'react-hot-toast';
 
 import Step1BasicInfo from '../../components/course-wizard/Step1BasicInfo';
 import Step2Media from '../../components/course-wizard/Step2Media';
@@ -24,7 +25,6 @@ export default function CreateCourseWizard() {
   
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
   
   const [formData, setFormData] = useState({
     title: '',
@@ -49,7 +49,7 @@ export default function CreateCourseWizard() {
           const response = await courseService.getCourseById(id);
           setFormData(response.data);
         } catch (err) {
-          setError(err.message || 'Failed to fetch course details');
+          toast.error(err.message || 'Failed to fetch course details');
         } finally {
           setLoading(false);
         }
@@ -59,8 +59,6 @@ export default function CreateCourseWizard() {
   }, [id]);
 
   const handleNextStep = async () => {
-    setError('');
-    
     // If Step 1, we either create a new draft or update existing
     if (currentStep === 1) {
       try {
@@ -91,7 +89,7 @@ export default function CreateCourseWizard() {
           setCurrentStep(2);
         }
       } catch (err) {
-        setError(err.message || 'Failed to save basic info');
+        toast.error(err.message || 'Failed to save basic info');
       } finally {
         setLoading(false);
       }
@@ -181,12 +179,6 @@ export default function CreateCourseWizard() {
         <div className="w-full max-w-4xl bg-surface-container-lowest rounded-[24px] border border-outline-variant/30 shadow-sm p-6 md:p-10 relative overflow-hidden">
           {/* Decorative gradient orb */}
           <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
-          
-          {error && currentStep !== 1 && (
-            <div className="mb-6 p-4 bg-error-container text-on-error-container rounded-lg relative z-10">
-              {error}
-            </div>
-          )}
 
           {renderStepContent()}
 

@@ -4,6 +4,8 @@ import { useAuth } from '../../hooks/useAuth';
 import { courseService } from '../../services/courseService';
 import toast from 'react-hot-toast';
 import InstructorSidebar from '../../components/layout/InstructorSidebar';
+import Skeleton from '../../components/ui/Skeleton';
+import EmptyState from '../../components/ui/EmptyState';
 
 export default function InstructorCourses() {
   const { user } = useAuth();
@@ -96,15 +98,25 @@ export default function InstructorCourses() {
 
           {/* Courses Grid */}
           {loading ? (
-            <p>Loading courses...</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="flex flex-col gap-4">
+                  <Skeleton className="h-48 w-full rounded-2xl" />
+                  <Skeleton className="h-6 w-3/4" />
+                  <Skeleton className="h-4 w-1/2" />
+                </div>
+              ))}
+            </div>
           ) : filteredCourses.length === 0 ? (
-            <div className="text-center py-16 bg-surface-container-lowest border border-outline-variant/30 rounded-2xl">
-              <span className="material-symbols-outlined text-[48px] text-on-surface-variant mb-4">school</span>
-              <h3 className="font-headline-sm text-headline-sm text-on-surface mb-2">No courses found</h3>
-              <p className="text-on-surface-variant mb-6">You haven't created any courses matching this search yet.</p>
-              <Link to="/instructor/course/create" className="bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md inline-block hover:-translate-y-0.5 transition-all">
-                Create your first course
-              </Link>
+            <div className="mt-8">
+              <EmptyState 
+                icon="school" 
+                title={searchQuery ? "No courses found" : "No Courses Yet"} 
+                description={searchQuery ? "No courses match your search criteria." : "You haven't created any courses yet. Start building your first course and share your knowledge!"} 
+                actionText={searchQuery ? "Clear Search" : "Create Course"} 
+                actionLink={searchQuery ? null : "/instructor/course/create"}
+                onClick={searchQuery ? () => setSearchQuery('') : null}
+              />
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
