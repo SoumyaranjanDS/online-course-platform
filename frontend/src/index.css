@@ -134,7 +134,225 @@
     direction: ltr;
     -webkit-font-smoothing: antialiased;
   }
+
   .icon-fill {
     font-variation-settings: 'FILL' 1;
   }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .hover-float {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .hover-float:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+  }
+
+  .soft-glow {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+  }
+
+  .organic-blob {
+    filter: blur(60px);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 5s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 8s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .organic-shape {
+    filter: blur(40px);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  .role-card-active-student {
+    border-color: #0058be !important;
+    background-color: #eff6ff !important;
+  }
+
+  .role-card-active-teacher {
+    border-color: #006c49 !important;
+    background-color: #f0fdf4 !important;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bounce-slow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes pulse-slow {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes floatY {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes floatX {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(12px);
+  }
+}
+
+@keyframes floatMain {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-10px) scale(1.015);
+  }
+}
+
+@keyframes blobSlow {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-22px, 18px) scale(1.08);
+  }
+}
+
+@keyframes blobReverse {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(24px, -18px) scale(1.08);
+  }
+}
+
+@keyframes pulseSoft {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes spinSoft {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float-y {
+  animation: floatY 4.5s ease-in-out infinite;
+}
+
+.animate-float-y-delay {
+  animation: floatY 5.2s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+.animate-float-x {
+  animation: floatX 5s ease-in-out infinite;
+}
+
+.animate-float-x-delay {
+  animation: floatX 5.5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-float-main {
+  animation: floatMain 6s ease-in-out infinite;
+}
+
+.animate-blob-slow {
+  animation: blobSlow 8s ease-in-out infinite;
+}
+
+.animate-blob-reverse {
+  animation: blobReverse 9s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulseSoft 3.2s ease-in-out infinite;
+}
+
+.animate-spin-soft {
+  animation: spinSoft 18s linear infinite;
 }

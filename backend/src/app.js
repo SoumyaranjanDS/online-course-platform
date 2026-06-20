@@ -7,6 +7,10 @@ import rateLimit from 'express-rate-limit';
 import compression from 'compression';
 import { errorHandler } from './middleware/error.middleware.js';
 import authRoutes from './routes/auth.routes.js';
+import courseRoutes from './routes/course.routes.js';
+import publicRoutes from './routes/public.routes.js';
+import studentRoutes from './routes/student.routes.js';
+import paymentRoutes from './routes/payment.routes.js';
 
 const app = express();
 
@@ -34,6 +38,10 @@ if (process.env.NODE_ENV === 'development') {
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/courses', courseRoutes);
+app.use('/api/student', studentRoutes);
+app.use('/api/public', publicRoutes);
+app.use('/api/payments', paymentRoutes);
 
 // Base route
 app.get('/', (req, res) => {

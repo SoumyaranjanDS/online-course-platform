@@ -9,7 +9,7 @@ const generateToken = (res, userId) => {
   res.cookie('jwt', token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'strict',
+    sameSite: 'lax', // Must be lax to allow cookies on redirects from Stripe
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   });
 
