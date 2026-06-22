@@ -62,8 +62,74 @@ export default function CourseDetails() {
     return (
       <div className="bg-background text-on-background font-body-md min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-grow flex items-center justify-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        <main className="flex-grow w-full max-w-container-max mx-auto px-gutter py-lg flex flex-col lg:flex-row gap-lg">
+          
+          {/* Main Content Skeleton */}
+          <div className="flex-1 flex flex-col gap-lg animate-pulse">
+            
+            {/* Hero Section Skeleton */}
+            <section className="flex flex-col gap-md">
+              <div className="flex items-center gap-sm">
+                <div className="h-8 w-24 bg-surface-variant/60 rounded-full"></div>
+                <div className="h-8 w-20 bg-surface-variant/60 rounded-full"></div>
+              </div>
+              <div className="h-12 w-3/4 bg-surface-variant/60 rounded-xl mt-2"></div>
+              <div className="h-12 w-1/2 bg-surface-variant/60 rounded-xl"></div>
+              
+              <div className="h-5 w-full max-w-2xl bg-surface-variant/60 rounded-md mt-6"></div>
+              <div className="h-5 w-5/6 max-w-2xl bg-surface-variant/60 rounded-md"></div>
+              <div className="h-5 w-4/6 max-w-2xl bg-surface-variant/60 rounded-md"></div>
+
+              <div className="flex items-center gap-sm mt-6">
+                <div className="w-12 h-12 rounded-full bg-surface-variant/60"></div>
+                <div className="h-5 w-32 bg-surface-variant/60 rounded-md"></div>
+              </div>
+
+              <div className="flex flex-wrap gap-md mt-6">
+                {[1, 2, 3].map(i => (
+                  <div key={i} className="flex items-center gap-2">
+                    <div className="w-5 h-5 bg-surface-variant/60 rounded-full"></div>
+                    <div className="h-4 w-20 bg-surface-variant/60 rounded-md"></div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* What you'll learn Skeleton */}
+            <section className="bg-surface-container-low border border-outline-variant p-md rounded-[16px] mt-8">
+              <div className="h-8 w-48 bg-surface-variant/60 rounded-md mb-6"></div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {[1, 2, 3, 4, 5, 6].map(i => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-5 h-5 bg-surface-variant/60 rounded-md shrink-0"></div>
+                    <div className="h-5 w-full bg-surface-variant/60 rounded-md"></div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          {/* Sticky Sidebar Skeleton */}
+          <div className="w-full lg:w-[400px] shrink-0 animate-pulse">
+            <div className="sticky top-24 bg-surface-container-lowest border border-outline-variant rounded-[24px] overflow-hidden shadow-elevation-1">
+              <div className="w-full aspect-video bg-surface-variant/60"></div>
+              <div className="p-md flex flex-col gap-sm">
+                <div className="h-10 w-32 bg-surface-variant/60 rounded-md mb-2"></div>
+                <div className="h-14 w-full bg-surface-variant/60 rounded-[16px]"></div>
+                <div className="h-4 w-40 bg-surface-variant/60 rounded-md mx-auto mt-2"></div>
+                <hr className="border-outline-variant my-4" />
+                <div className="h-6 w-36 bg-surface-variant/60 rounded-md mb-3"></div>
+                <div className="flex flex-col gap-4">
+                  {[1, 2, 3, 4].map(i => (
+                    <div key={i} className="flex items-center gap-3">
+                      <div className="w-5 h-5 bg-surface-variant/60 rounded-full"></div>
+                      <div className="h-4 w-32 bg-surface-variant/60 rounded-md"></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </main>
         <Footer />
       </div>
@@ -220,12 +286,6 @@ export default function CourseDetails() {
                 className="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-[16px] hover:bg-primary-container hover:text-on-primary-container transition-all scale-98 active:scale-95 duration-200 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isCheckingOut ? 'Processing...' : 'Buy Now'}
-              </button>
-              <button 
-                onClick={() => toast('Cart functionality coming soon!', { icon: '🛒' })}
-                className="w-full bg-surface-container-high text-primary font-label-md text-label-md py-3 rounded-[16px] hover:bg-surface-container-highest transition-all scale-98 active:scale-95 duration-200 border border-outline-variant"
-              >
-                Add to Cart
               </button>
               <div className="text-body-sm font-body-sm text-on-surface-variant text-center mt-2">
                 30-Day Money-Back Guarantee
