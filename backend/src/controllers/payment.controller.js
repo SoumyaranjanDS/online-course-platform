@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
-import { Course } from "../models/course.model.js";
+import { Course } from "../models/Course.model.js";
 import Enrollment from "../models/Enrollment.model.js";
 import Progress from "../models/Progress.model.js";
 
@@ -125,10 +125,19 @@ export const verifyCheckoutSession = asyncHandler(async (req, res, next) => {
         // If it's a duplicate key error (11000) for stripeSessionId, it means another request just created it.
         // We can safely ignore and just return success.
         if (createErr.code === 11000) {
+          const courseDetails = await Course.findById(courseId).populate('instructor', 'name email');
+          const existingEnroll = await Enrollment.findOne({ stripeSessionId: sessionId });
           return res.status(200).json({
             success: true,
             message: "Enrollment already verified",
             courseId,
+            course: courseDetails,
+            invoice: {
+              invoiceNumber: session.payment_intent || sessionId.substring(0, 14),
+              orderTime: existingEnroll ? existingEnroll.enrolledAt : new Date(),
+              paymentMethod: "Card (Stripe)",
+              amountPaid: session.amount_total ? session.amount_total / 100 : 0,
+            }
           });
         }
         throw createErr;
@@ -148,10 +157,19 @@ export const verifyCheckoutSession = asyncHandler(async (req, res, next) => {
       });
     }
 
+    const courseDetails = await Course.findById(courseId).populate('instructor', 'name email');
+
     res.status(200).json({
       success: true,
       message: "Enrollment verified successfully",
       courseId,
+      course: courseDetails,
+      invoice: {
+        invoiceNumber: session.payment_intent || sessionId.substring(0, 14),
+        orderTime: enrollment.enrolledAt,
+        paymentMethod: "Card (Stripe)",
+        amountPaid: session.amount_total ? session.amount_total / 100 : 0,
+      }
     });
   } catch (err) {
     console.error("VERIFY CHECKOUT SESSION ERROR:", err);

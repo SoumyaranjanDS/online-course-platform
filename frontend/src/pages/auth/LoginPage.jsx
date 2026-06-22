@@ -185,7 +185,7 @@ const LoginPage = () => {
               Unlocking potential through clarity.
             </h2>
             <p className="mx-auto mt-3 max-w-[390px] text-[14px] leading-6 text-slate-600">
-              Join over 50,000 learners mastering new skills with Luminous
+              Join over 50,000 learners mastering new skills with Skillwell
               Learning&apos;s adaptive curriculum.
             </p>
           </div>
@@ -201,7 +201,7 @@ const LoginPage = () => {
               <Lightbulb className="h-4 w-4" />
             </span>
             <span className="text-[15px] font-bold text-[#075CE8]">
-              Luminous
+              Skillwell
             </span>
           </Link>
         </div>
@@ -356,7 +356,7 @@ const LoginPage = () => {
         </div>
 
         <p className="pb-4 text-center lg:text-left text-[11px] text-slate-400 mt-8 lg:mt-0">
-          © 2024 Luminous Learning. All rights reserved.
+          © 2024 Skillwell Learning. All rights reserved.
         </p>
       </section>
     </main>

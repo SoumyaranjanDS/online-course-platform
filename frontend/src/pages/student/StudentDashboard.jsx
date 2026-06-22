@@ -145,7 +145,7 @@ export default function StudentDashboard() {
                     Continue Learning
                   </h2>
                   {dashboardData?.continueLearning?.length > 0 ? (
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col w-full gap-6">
                       {dashboardData.continueLearning.map((course) => (
                         <div
                           key={course._id}

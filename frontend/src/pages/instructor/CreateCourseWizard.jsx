@@ -127,7 +127,7 @@ export default function CreateCourseWizard() {
       {/* TopNavBar Simplified */}
       <header className="bg-surface dark:bg-surface-container shadow-sm h-20 w-full flex items-center px-gutter">
         <Link to="/instructor/dashboard" className="text-primary font-bold flex items-center gap-2 text-headline-sm">
-          <img src="/logo.png" alt="Skillwell" className="h-8 w-auto object-contain" />
+          <img src="/logo.png" alt="Skillwell" className="h-10 w-auto object-contain" />
           Skillwell
         </Link>
       </header>

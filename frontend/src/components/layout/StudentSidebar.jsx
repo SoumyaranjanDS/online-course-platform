@@ -5,6 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 const studentNavItems = [
   { to: "/student/dashboard", icon: "dashboard", label: "Dashboard" },
   { to: "/student/courses", icon: "school", label: "My Courses" },
+  { to: "/student/doubts", icon: "help_center", label: "My Doubts & Q&A" },
 ];
 
 export default function StudentSidebar() {
@@ -19,7 +20,7 @@ export default function StudentSidebar() {
       {/* Mobile TopBar */}
       <header className="md:hidden flex justify-between items-center w-full px-4 h-16 bg-surface-container-lowest border-b border-outline-variant fixed top-0 z-50">
         <Link to="/" className="flex items-center gap-2 text-headline-sm font-headline-sm font-bold text-primary">
-          <img src="/logo.png" alt="Skillwell" className="h-8 w-auto object-contain" />
+          <img src="/logo.png" alt="Skillwell" className="h-10 w-auto object-contain" />
           Skillwell
         </Link>
         <button
@@ -91,7 +92,7 @@ export default function StudentSidebar() {
       <nav className="hidden md:flex flex-col h-screen w-72 bg-surface-container-lowest border-r border-outline-variant fixed left-0 top-0 z-40 p-6 gap-2">
         <div className="flex items-center justify-between mb-8">
           <Link to="/" className="flex items-center gap-2 text-headline-sm font-headline-sm font-bold text-primary">
-            <img src="/logo.png" alt="Skillwell" className="h-8 w-auto object-contain" />
+            <img src="/logo.png" alt="Skillwell" className="h-10 w-auto object-contain" />
             Skillwell
           </Link>
         </div>

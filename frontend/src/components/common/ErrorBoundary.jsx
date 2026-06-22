@@ -21,8 +21,8 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       // You can render any custom fallback UI
       return (
-        <div className="min-h-screen bg-background flex flex-col items-center justify-center p-4">
-          <div className="bg-surface-container-lowest border border-error/30 rounded-3xl p-8 md:p-12 text-center max-w-lg shadow-xl shadow-error/5">
+        <div className="bg-background flex flex-col items-center justify-center p-4">
+          <div className="bg-surface-container-lowest border border-error/30 rounded-3xl p-8 md:p-12 text-center shadow-xl shadow-error/5">
             <div className="w-20 h-20 bg-error-container text-error rounded-full flex items-center justify-center mx-auto mb-6">
               <span className="material-symbols-outlined text-[40px]">warning</span>
             </div>

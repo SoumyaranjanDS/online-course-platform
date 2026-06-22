@@ -1,20 +1,62 @@
 import React from 'react';
 
 const TrustAndStatsSection = () => {
+  const trustedTeams = [
+    { name: "Google", color: "text-blue-500" },
+    { name: "Microsoft", color: "text-blue-600" },
+    { name: "Amazon", color: "text-amber-500" },
+    { name: "Netflix", color: "text-red-600" },
+    { name: "Meta", color: "text-blue-500" },
+    { name: "Apple", color: "text-slate-800" },
+    { name: "Spotify", color: "text-green-500" },
+    { name: "Stripe", color: "text-indigo-500" },
+    { name: "Airbnb", color: "text-rose-500" },
+    { name: "Uber", color: "text-slate-900" },
+  ];
+
+  const marqueeItems = [...trustedTeams, ...trustedTeams];
+
   return (
     <>
+      <style>
+        {`
+          @keyframes marquee-scroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+          }
+          .custom-animate-marquee {
+            animation: marquee-scroll 40s linear infinite;
+          }
+        `}
+      </style>
       {/* Trust Bar */}
-      <section className="py-12 bg-white border-y border-outline-variant/20">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-8">
-          <p className="text-center text-sm font-bold text-outline uppercase tracking-widest mb-8">
-            Trusted by teams at
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
-            <span className="font-bold text-2xl tracking-tighter text-slate-800">TECHGLOW</span>
-            <span className="font-bold text-2xl tracking-tighter text-slate-800">VORTEX</span>
-            <span className="font-bold text-2xl tracking-tighter text-slate-800">SPHERE.IO</span>
-            <span className="font-bold text-2xl tracking-tighter text-slate-800">LUMINA</span>
-            <span className="font-bold text-2xl tracking-tighter text-slate-800">NEXUS</span>
+      <section className="py-12 bg-white border-y border-outline-variant/20 overflow-hidden">
+        <p className="text-center text-sm font-bold text-outline uppercase tracking-widest mb-8">
+          Trusted by teams at
+        </p>
+
+        <div className="relative flex overflow-hidden group w-full">
+          {/* Left/Right fading gradients for smooth scrolling effect */}
+          <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+          {/* The infinite scrolling container */}
+          <div className="flex whitespace-nowrap custom-animate-marquee group-hover:[animation-play-state:paused] min-w-max">
+            {marqueeItems.map((team, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-2.5 mx-8 md:mx-12 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-default"
+              >
+                <div
+                  className={`w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center font-bold text-xl shadow-sm border border-slate-100 ${team.color}`}
+                >
+                  {team.name.charAt(0)}
+                </div>
+                <span className="text-2xl font-bold text-slate-800 tracking-tight">
+                  {team.name}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>

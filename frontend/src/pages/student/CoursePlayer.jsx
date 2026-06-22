@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { studentService } from "../../services/studentService";
+import { interactionService } from "../../services/interactionService";
 import Navbar from "../../components/layout/Navbar";
 import toast from "react-hot-toast";
-import { CheckCircle, PlayCircle, Menu, X, ChevronLeft, ChevronRight, Award } from "lucide-react";
+import { CheckCircle, PlayCircle, Menu, X, ChevronLeft, ChevronRight, Award, MessageCircleQuestion, Send, Clock, Trash2 } from "lucide-react";
 import CertificateModal from "../../components/student/CertificateModal";
 import ModernVideoPlayer from "../../components/student/ModernVideoPlayer";
 
@@ -17,6 +18,15 @@ export default function CoursePlayer() {
   const [loading, setLoading] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showCertificate, setShowCertificate] = useState(false);
+  const [activeTab, setActiveTab] = useState("overview"); // 'overview' | 'qna'
+
+  // Q&A State
+  const playerRef = useRef(null);
+  const [doubtsQueue, setDoubtsQueue] = useState([]);
+  const [isAskingDoubt, setIsAskingDoubt] = useState(false);
+  const [currentDoubtTime, setCurrentDoubtTime] = useState(0);
+  const [doubtText, setDoubtText] = useState("");
+  const [submittingDoubts, setSubmittingDoubts] = useState(false);
 
   useEffect(() => {
     const fetchPlayerInfo = async () => {
@@ -66,6 +76,51 @@ export default function CoursePlayer() {
     } catch (error) {
       toast.error("Failed to mark lesson complete");
     }
+  };
+
+  const handleAskDoubt = () => {
+    if (playerRef.current) {
+      const time = playerRef.current.getCurrentTime();
+      setCurrentDoubtTime(time);
+      setIsAskingDoubt(true);
+      setDoubtText("");
+    }
+  };
+
+  const handleSaveDoubtToQueue = () => {
+    if (!doubtText.trim()) return;
+    setDoubtsQueue(prev => [...prev, {
+      course: courseId,
+      lesson: activeLesson._id,
+      timestamp: currentDoubtTime,
+      question: doubtText
+    }]);
+    setIsAskingDoubt(false);
+    toast.success("Doubt added to queue!");
+  };
+
+  const removeDoubtFromQueue = (index) => {
+    setDoubtsQueue(prev => prev.filter((_, i) => i !== index));
+  };
+
+  const handleSubmitDoubts = async () => {
+    if (doubtsQueue.length === 0) return;
+    try {
+      setSubmittingDoubts(true);
+      await interactionService.submitDoubts(doubtsQueue);
+      toast.success("All doubts sent to instructor!");
+      setDoubtsQueue([]);
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to submit doubts");
+    } finally {
+      setSubmittingDoubts(false);
+    }
+  };
+
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
   const getLessonSequence = () => {
@@ -203,6 +258,7 @@ export default function CoursePlayer() {
                 <div className="w-full max-w-[1200px] aspect-video relative shadow-xl">
                   {activeLesson.videoUrl ? (
                     <ModernVideoPlayer 
+                      ref={playerRef}
                       videoUrl={activeLesson.videoUrl} 
                       courseId={courseId} 
                       lessonId={activeLesson._id}
@@ -273,9 +329,130 @@ export default function CoursePlayer() {
                       </button>
                     </div>
                   </div>
-                  {activeLesson.description && (
+
+                  {/* Tabs */}
+                  <div className="flex border-b border-gray-200 mb-6">
+                    <button
+                      onClick={() => setActiveTab("overview")}
+                      className={`px-4 py-3 font-semibold text-sm transition-colors relative ${activeTab === "overview" ? "text-primary" : "text-gray-500 hover:text-gray-900"}`}
+                    >
+                      Overview
+                      {activeTab === "overview" && (
+                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
+                      )}
+                    </button>
+                    <button
+                      onClick={() => setActiveTab("qna")}
+                      className={`px-4 py-3 font-semibold text-sm transition-colors relative flex items-center gap-2 ${activeTab === "qna" ? "text-primary" : "text-gray-500 hover:text-gray-900"}`}
+                    >
+                      <MessageCircleQuestion className="w-4 h-4" />
+                      Q&A (Doubts)
+                      {activeTab === "qna" && (
+                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"></div>
+                      )}
+                    </button>
+                  </div>
+
+                  {activeTab === "overview" && (
                     <div className="text-sm text-gray-700 font-['Inter'] leading-relaxed whitespace-pre-line max-w-4xl">
-                      {activeLesson.description}
+                      {activeLesson.description || "No description provided."}
+                    </div>
+                  )}
+
+                  {activeTab === "qna" && (
+                    <div className="max-w-4xl">
+                      {!isAskingDoubt ? (
+                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 mb-8 text-center flex flex-col items-center">
+                          <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-3">
+                            <MessageCircleQuestion className="w-6 h-6" />
+                          </div>
+                          <h3 className="text-lg font-bold text-slate-800 mb-2">Have a question?</h3>
+                          <p className="text-slate-600 text-sm mb-4">
+                            Stuck on a concept? Click below to pause the video and capture the exact timestamp so the instructor knows what you're referencing.
+                          </p>
+                          <button
+                            onClick={handleAskDoubt}
+                            className="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-bold shadow-md hover:shadow-lg transition-all"
+                          >
+                            Ask a Doubt at Current Time
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="bg-white border border-gray-200 rounded-xl p-5 mb-8 shadow-sm">
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="font-bold text-slate-800 flex items-center gap-2">
+                              New Doubt
+                            </h3>
+                            <span className="flex items-center gap-1.5 bg-slate-100 text-slate-600 px-3 py-1 rounded-full text-xs font-bold font-mono">
+                              <Clock className="w-3.5 h-3.5" />
+                              {formatTime(currentDoubtTime)}
+                            </span>
+                          </div>
+                          <textarea
+                            value={doubtText}
+                            onChange={(e) => setDoubtText(e.target.value)}
+                            placeholder="Type your question here..."
+                            className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-primary focus:border-primary resize-none h-24 mb-4"
+                            autoFocus
+                          />
+                          <div className="flex items-center justify-end gap-3">
+                            <button
+                              onClick={() => setIsAskingDoubt(false)}
+                              className="px-4 py-2 text-sm font-semibold text-gray-500 hover:text-gray-700"
+                            >
+                              Cancel
+                            </button>
+                            <button
+                              onClick={handleSaveDoubtToQueue}
+                              disabled={!doubtText.trim()}
+                              className="bg-primary text-on-primary px-5 py-2 rounded-lg text-sm font-bold disabled:opacity-50 transition-colors"
+                            >
+                              Save to Queue
+                            </button>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Queue Section */}
+                      {doubtsQueue.length > 0 && (
+                        <div>
+                          <div className="flex items-center justify-between mb-4">
+                            <h3 className="font-bold text-slate-800 text-lg">Doubts Queue ({doubtsQueue.length})</h3>
+                            <button
+                              onClick={handleSubmitDoubts}
+                              disabled={submittingDoubts}
+                              className="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-colors disabled:opacity-70"
+                            >
+                              {submittingDoubts ? (
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                              ) : (
+                                <Send className="w-4 h-4" />
+                              )}
+                              Send to Instructor
+                            </button>
+                          </div>
+                          
+                          <div className="space-y-3">
+                            {doubtsQueue.map((doubt, idx) => (
+                              <div key={idx} className="bg-white border border-gray-200 rounded-lg p-4 flex items-start gap-4 group">
+                                <span className="flex items-center gap-1 bg-blue-50 text-blue-700 px-2.5 py-1 rounded-md text-xs font-bold font-mono shrink-0 mt-0.5">
+                                  <Clock className="w-3.5 h-3.5" />
+                                  {formatTime(doubt.timestamp)}
+                                </span>
+                                <p className="text-sm text-gray-700 flex-1 leading-relaxed">
+                                  {doubt.question}
+                                </p>
+                                <button
+                                  onClick={() => removeDoubtFromQueue(idx)}
+                                  className="text-gray-400 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
+                                >
+                                  <Trash2 className="w-4 h-4" />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

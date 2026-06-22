@@ -72,9 +72,9 @@ const SignupPage = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      
+
       const idToken = await user.getIdToken();
-      
+
       const res = await googleLogin({
         idToken,
         role: selectedRole,
@@ -86,7 +86,9 @@ const SignupPage = () => {
         navigate("/instructor/dashboard");
     } catch (error) {
       console.error(error);
-      toast.error(error.response?.data?.message || "Failed to sign up with Google");
+      toast.error(
+        error.response?.data?.message || "Failed to sign up with Google",
+      );
     }
   };
 
@@ -219,7 +221,7 @@ const SignupPage = () => {
               <Sun className="h-4 w-4" />
             </span>
             <span className="text-[14px] font-bold text-[#075CE8]">
-              Luminous Learning
+              Skillwell Learning
             </span>
           </Link>
         </div>
@@ -230,12 +232,11 @@ const SignupPage = () => {
             <header className="mb-8 text-center lg:text-left">
               <h1 className="mb-2.5 text-[29px] font-bold leading-tight tracking-tight text-slate-950 sm:text-[32px]">
                 Start your journey
-                <br className="hidden lg:block" />
-                {" "}with us.
+                <br className="hidden lg:block" /> with us.
               </h1>
 
               <p className="text-[14px] leading-relaxed text-slate-500">
-                Choose how you&apos;ll use Luminous Learning.
+                Choose how you&apos;ll use Skillwell Learning.
               </p>
             </header>
 
@@ -437,9 +438,6 @@ const SignupPage = () => {
             </p>
           </div>
         </div>
-        <p className="pb-4 text-center lg:text-left text-[11px] text-slate-400 mt-auto lg:mt-0 lg:absolute lg:bottom-7 lg:left-20">
-          © 2024 Luminous Learning. All rights reserved.
-        </p>
       </section>
     </main>
   );

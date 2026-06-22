@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Play, Pause, Volume2, VolumeX, Maximize, Settings } from "lucide-react";
+import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from "react";
+import { Play, Pause, Volume2, VolumeX, Maximize, Settings, MessageCircleQuestion } from "lucide-react";
 import { studentService } from "../../services/studentService";
 
-export default function ModernVideoPlayer({ videoUrl, courseId, lessonId, lessonDuration, onLessonComplete, onProgressUpdate }) {
+const ModernVideoPlayer = forwardRef(({ videoUrl, courseId, lessonId, lessonDuration, onLessonComplete, onProgressUpdate }, ref) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
 
@@ -20,6 +20,19 @@ export default function ModernVideoPlayer({ videoUrl, courseId, lessonId, lesson
   // For syncing progress
   const [lastSyncTime, setLastSyncTime] = useState(0);
   const [hasCompleted, setHasCompleted] = useState(false);
+
+  // Expose methods to parent
+  useImperativeHandle(ref, () => ({
+    getCurrentTime: () => {
+      if (videoRef.current) {
+        // Automatically pause video when asking a doubt
+        videoRef.current.pause();
+        setIsPlaying(false);
+        return videoRef.current.currentTime;
+      }
+      return 0;
+    }
+  }));
 
   // Update duration if lessonDuration changes
   useEffect(() => {
@@ -304,4 +317,6 @@ export default function ModernVideoPlayer({ videoUrl, courseId, lessonId, lesson
       </div>
     </div>
   );
-}
+});
+
+export default ModernVideoPlayer;

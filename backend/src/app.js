@@ -11,6 +11,7 @@ import courseRoutes from './routes/course.routes.js';
 import publicRoutes from './routes/public.routes.js';
 import studentRoutes from './routes/student.routes.js';
 import paymentRoutes from './routes/payment.routes.js';
+import interactionRoutes from './routes/interaction.routes.js';
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use('/api/courses', courseRoutes);
 app.use('/api/student', studentRoutes);
 app.use('/api/public', publicRoutes);
 app.use('/api/payments', paymentRoutes);
+app.use('/api/interactions', interactionRoutes);
 
 // Base route
 app.get('/', (req, res) => {

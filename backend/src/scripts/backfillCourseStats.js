@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { Course } from '../models/course.model.js';
+import { Course } from '../models/Course.model.js';
 import Enrollment from '../models/Enrollment.model.js';
 
 const __filename = fileURLToPath(import.meta.url);

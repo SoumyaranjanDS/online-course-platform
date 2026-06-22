@@ -31,7 +31,7 @@ const TestimonialsSection = () => {
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCDiVUCKl99keqjOgEIYF4aZRfIfdd2fSdlmwQs_vI4wu13g2OjQYD8g2fUO8SC2EkMtd64-M4A5ZsXOn7IZm4cso8NZcjzADQ7kS_sIXq1GkYKMcOmtJNBK_LY9n9efgSxFfX3oQcnGwy0dsKpVkJO6r6Gx_NtDyUGgjZglJLZUO2IayJ8VIQK-7vwXUgc8EjxRnu1GM59P_txeWFWRvGoiZ5rEc6mB1pn6jH_V73vXeBuVKcljdeArjkZBFKTCdMLuPzEV9ly_5o"
     },
     {
-      quote: "The flexibility of Luminous is unmatched. I can study late at night or during my commute without any friction.",
+      quote: "The flexibility of Skillwell is unmatched. I can study late at night or during my commute without any friction.",
       name: "David Chen",
       role: "Marketing Manager",
       img: "https://lh3.googleusercontent.com/aida-public/AB6AXuB4W2G8SeHJZhZtA_9GRSMWTz-m9nxKfVlU9lRE0OU7mK1mI9G17FqKLWzrQ_GnTC2UiJQ1r-SsGXRgEr2DtaeEIo1_k-BdlGiT5Tvl_iOeZ8t88jVxzZ8fp9Tdd4xztfb65MLvLVQbO-WDJhNlkXz584_I6flxnYZgdxrHvCIsB_IGBoPGGXPzwAYLQuSs_S-rmox9tj-sEMoDg9-xkjA5istZBeRzndcCMVgsBlEdy8U9wMvp9vw_k40VdF3DX4MSM7Xeb7FaCqI"

@@ -2,7 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import Enrollment from "../models/Enrollment.model.js";
 import Progress from "../models/Progress.model.js";
 import ActivityLog from "../models/ActivityLog.model.js";
-import { Course } from "../models/course.model.js";
+import { Course } from "../models/Course.model.js";
 import { ApiError } from "../utils/ApiError.js";
 
 // @desc    Get student dashboard stats

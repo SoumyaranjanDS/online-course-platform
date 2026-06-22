@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d2ff" />
+      <stop offset="100%" stop-color="#003b8e" />
+    </linearGradient>
+    
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffce00" />
+      <stop offset="100%" stop-color="#e63900" />
+    </linearGradient>
+
+    <linearGradient id="textBlueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#aae6ff" />
+      <stop offset="100%" stop-color="#0077cc" />
+    </linearGradient>
+    
+    <linearGradient id="textOrangeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff5cc" />
+      <stop offset="40%" stop-color="#ffcc00" />
+      <stop offset="100%" stop-color="#cc5500" />
+    </linearGradient>
+  </defs>
+
+  <g id="graduation-cap">
+    <path d="M400,60 L620,130 L400,200 L180,130 Z" fill="#0d1117" stroke="#1f8cd6" stroke-width="2"/>
+    <path d="M400,70 L600,130 L400,190 L200,130 Z" fill="#161b22"/>
+    <path d="M280,165 L280,240 Q400,300 520,240 L520,165 Q400,210 280,165 Z" fill="#0d1117" />
+    <line x1="575" y1="125" x2="575" y2="240" stroke="#f1c40f" stroke-width="4" />
+    <circle cx="575" cy="245" r="8" fill="#f1c40f" />
+    <polygon points="565,250 585,250 595,300 555,300" fill="#222" />
+  </g>
+
+  <g id="data-pixels">
+    <rect x="180" y="270" width="16" height="16" fill="#00a8ff" />
+    <rect x="150" y="300" width="16" height="16" fill="#00a8ff" opacity="0.6"/>
+    <rect x="200" y="310" width="16" height="16" fill="#00a8ff" opacity="0.4"/>
+    <rect x="170" y="350" width="16" height="16" fill="#ff9900" />
+    <rect x="220" y="365" width="16" height="16" fill="#ffcc00" opacity="0.8"/>
+  </g>
+
+  <g id="center-logo">
+    <path d="M460,190 C300,190 220,300 250,400 C270,470 330,500 370,480 C400,465 420,430 420,400 C420,370 360,350 340,320 C320,280 350,240 420,240 C490,240 550,290 550,290 L600,240 C600,240 550,190 460,190 Z" fill="url(#blueGrad)" />
+    
+    <path d="M340,540 C500,540 580,430 550,330 C530,260 470,230 430,250 C400,265 380,300 380,330 C380,360 440,380 460,410 C480,450 450,490 380,490 C310,490 250,440 250,440 L200,490 C200,490 250,540 340,540 Z" fill="url(#orangeGrad)" />
+    
+    <polygon points="385,325 460,365 385,405" fill="#061c3f" />
+  </g>
+
+  <g id="book-base">
+    <path d="M120,530 Q280,480 400,560 Q520,480 680,530 L650,570 Q520,520 400,600 Q280,520 150,570 Z" fill="#001833" />
+    <path d="M140,520 Q280,470 400,550 Q520,470 660,520 L630,540 Q520,500 400,570 Q280,500 170,540 Z" fill="#0055a4" />
+    <path d="M170,510 Q280,465 400,540 Q520,465 630,510 L600,525 Q520,485 400,555 Q280,485 200,525 Z" fill="#e0f7fa" />
+    <polygon points="395,540 405,540 415,610 385,610" fill="#ff7700" />
+  </g>
+
+  <g id="typography">
+    <text x="250" y="700" font-family="Arial, Helvetica, sans-serif" font-size="120" font-weight="800" fill="url(#textBlueGrad)" text-anchor="middle" stroke="#004488" stroke-width="3">Skill</text>
+    <text x="560" y="700" font-family="Arial, Helvetica, sans-serif" font-size="120" font-weight="800" fill="url(#textOrangeGrad)" text-anchor="middle" stroke="#883300" stroke-width="3">well</text>
+  </g>
+
+  <g id="tagline">
+    <line x1="150" y1="745" x2="220" y2="745" stroke="#ccc" stroke-width="2" />
+    <text x="400" y="755" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="10" fill="#777" text-anchor="middle">
+      LEARN  <tspan fill="#d4af37">•</tspan>  TEACH  <tspan fill="#d4af37">•</tspan>  EARN
+    </text>
+    <line x1="580" y1="745" x2="650" y2="745" stroke="#ccc" stroke-width="2" />
+  </g>
+</svg>

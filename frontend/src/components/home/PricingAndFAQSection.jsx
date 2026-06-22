@@ -66,11 +66,11 @@ const FAQItem = ({ question, answer }) => {
 
 const PricingAndFAQSection = () => {
   const faqs = [
-    { q: "Are the courses self-paced?", a: "Yes, all courses on Luminous are 100% self-paced. You can start, pause, and resume your learning at any time that fits your schedule." },
+    { q: "Are the courses self-paced?", a: "Yes, all courses on Skillwell are 100% self-paced. You can start, pause, and resume your learning at any time that fits your schedule." },
     { q: "Do I receive a certificate?", a: "Every Pro and Enterprise learner receives a digitally verifiable certificate upon successful completion of a course and its final assessment." },
     { q: "Can I get a refund if I'm not satisfied?", a: "We offer a 30-day money-back guarantee for all paid plans. If you're not satisfied with the learning experience, just let us know." },
     { q: "Are there group discounts?", a: "Yes, our Enterprise plan is designed for teams. For groups larger than 20, please contact our sales team for custom pricing." },
-    { q: "What kind of hardware do I need?", a: "As long as you have a modern web browser and a stable internet connection, you can access Luminous from any desktop, tablet, or smartphone." }
+    { q: "What kind of hardware do I need?", a: "As long as you have a modern web browser and a stable internet connection, you can access Skillwell from any desktop, tablet, or smartphone." }
   ];
 
   return (

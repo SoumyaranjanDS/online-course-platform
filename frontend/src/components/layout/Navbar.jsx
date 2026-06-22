@@ -46,7 +46,7 @@ export default function Navbar() {
         
         <div className="flex items-center gap-12">
           <Link className="flex items-center gap-2 text-2xl font-bold text-primary tracking-tight" to="/">
-            <img src="/logo.png" alt="Skillwell Logo" className="h-8 w-auto object-contain" />
+            <img src="/logo.png" alt="Skillwell Logo" className="h-10 w-auto object-contain" />
             Skillwell
           </Link>
           

@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { studentService } from "../../services/studentService";
 import StudentSidebar from "../../components/layout/StudentSidebar";
 import CertificateModal from "../../components/student/CertificateModal";
+import CourseReviewModal from "../../components/student/CourseReviewModal";
 import Skeleton from "../../components/ui/Skeleton";
 import EmptyState from "../../components/ui/EmptyState";
 
@@ -13,6 +14,7 @@ export default function StudentCourses() {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCertificateCourse, setSelectedCertificateCourse] = useState(null);
+  const [selectedReviewCourse, setSelectedReviewCourse] = useState(null);
 
   const filteredCourses = courses.filter(course => 
     course.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -144,12 +146,20 @@ export default function StudentCourses() {
                         </div>
                       </div>
                       {course.completionPercentage >= 100 && (
-                        <button
-                          onClick={() => setSelectedCertificateCourse(course)}
-                          className="w-full text-center bg-secondary-container text-on-secondary-container font-label-md text-label-md py-3 px-4 rounded-xl hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all active:scale-95 mb-2 border border-secondary"
-                        >
-                          View Certificate
-                        </button>
+                        <>
+                          <button
+                            onClick={() => setSelectedCertificateCourse(course)}
+                            className="w-full text-center bg-secondary-container text-on-secondary-container font-label-md text-label-md py-3 px-4 rounded-xl hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all active:scale-95 mb-2 border border-secondary"
+                          >
+                            View Certificate
+                          </button>
+                          <button
+                            onClick={() => setSelectedReviewCourse(course)}
+                            className="w-full text-center bg-white text-slate-700 border border-slate-200 font-label-md text-label-md py-3 px-4 rounded-xl hover:bg-slate-50 transition-all mb-2 shadow-sm"
+                          >
+                            Leave a Review
+                          </button>
+                        </>
                       )}
 
                       {course.expiresAt && new Date(course.expiresAt) < new Date() ? (
@@ -164,7 +174,7 @@ export default function StudentCourses() {
                           to={`/student/course/${course.courseId}/learn`}
                           className="w-full text-center bg-primary text-on-primary font-label-md text-label-md py-3 px-4 rounded-xl hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] transition-all hover:bg-primary/90 active:scale-95"
                         >
-                          {course.completionPercentage >= 100 ? "Review Course" : course.completionPercentage === 0 ? "Start Learning" : "Resume Course"}
+                          {course.completionPercentage >= 100 ? "Review Content" : course.completionPercentage === 0 ? "Start Learning" : "Resume Course"}
                         </Link>
                       )}
                     </div>
@@ -193,6 +203,14 @@ export default function StudentCourses() {
         <CertificateModal
           course={selectedCertificateCourse}
           onClose={() => setSelectedCertificateCourse(null)}
+        />
+      )}
+
+      {/* Review Modal */}
+      {selectedReviewCourse && (
+        <CourseReviewModal
+          course={selectedReviewCourse}
+          onClose={() => setSelectedReviewCourse(null)}
         />
       )}
     </div>

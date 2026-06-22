@@ -42,7 +42,7 @@ export default function CreateCourse() {
       <header className="bg-surface dark:bg-surface-container shadow-sm h-20 w-full flex items-center px-gutter">
         <Link to="/instructor/dashboard" className="text-primary font-bold flex items-center gap-2">
           <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>school</span>
-          LearnHub
+          Skillwell
         </Link>
       </header>
 

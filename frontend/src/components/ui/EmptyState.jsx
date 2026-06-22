@@ -18,7 +18,7 @@ export default function EmptyState({
       </div>
       
       <h3 className="text-headline-sm font-headline-sm text-on-surface mb-2">{title}</h3>
-      <p className="text-body-md text-on-surface-variant max-w-md mb-8">{description}</p>
+      <p className="text-body-md text-on-surface-variant mb-8 mx-auto">{description}</p>
       
       {actionLink && actionText && (
         <Link 

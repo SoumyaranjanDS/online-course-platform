@@ -111,6 +111,50 @@
   --text-body-sm: 14px;
   --text-body-sm--line-height: 1.5;
   --text-body-sm--font-weight: 400;
+
+  --animate-float-y: floatY 4.5s ease-in-out infinite;
+  --animate-float-y-delay: floatY 5.2s ease-in-out infinite 0.8s;
+  --animate-float-x: floatX 5s ease-in-out infinite;
+  --animate-float-x-delay: floatX 5.5s ease-in-out infinite 1s;
+  --animate-float-main: floatMain 6s ease-in-out infinite;
+  --animate-blob-slow: blobSlow 8s ease-in-out infinite;
+  --animate-blob-reverse: blobReverse 9s ease-in-out infinite;
+  --animate-pulse-soft: pulseSoft 3.2s ease-in-out infinite;
+  --animate-spin-soft: spinSoft 18s linear infinite;
+  --animate-marquee: marquee 40s linear infinite;
+
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+  @keyframes floatX {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(12px); }
+  }
+  @keyframes floatMain {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.015); }
+  }
+  @keyframes blobSlow {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-22px, 18px) scale(1.08); }
+  }
+  @keyframes blobReverse {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(24px, -18px) scale(1.08); }
+  }
+  @keyframes pulseSoft {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50% { transform: scale(1.05); opacity: 1; }
+  }
+  @keyframes spinSoft {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
 }
 
 @layer base {
@@ -235,124 +279,7 @@
   }
 }
 
-@keyframes floatY {
-
-  0%,
-  100% {
-    transform: translateY(0);
+  .role-card-active-teacher {
+    border-color: #006c49 !important;
+    background-color: #f0fdf4 !important;
   }
-
-  50% {
-    transform: translateY(-14px);
-  }
-}
-
-@keyframes floatX {
-
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  50% {
-    transform: translateX(12px);
-  }
-}
-
-@keyframes floatMain {
-
-  0%,
-  100% {
-    transform: translateY(0) scale(1);
-  }
-
-  50% {
-    transform: translateY(-10px) scale(1.015);
-  }
-}
-
-@keyframes blobSlow {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  50% {
-    transform: translate(-22px, 18px) scale(1.08);
-  }
-}
-
-@keyframes blobReverse {
-
-  0%,
-  100% {
-    transform: translate(0, 0) scale(1);
-  }
-
-  50% {
-    transform: translate(24px, -18px) scale(1.08);
-  }
-}
-
-@keyframes pulseSoft {
-
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.9;
-  }
-
-  50% {
-    transform: scale(1.05);
-    opacity: 1;
-  }
-}
-
-@keyframes spinSoft {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-float-y {
-  animation: floatY 4.5s ease-in-out infinite;
-}
-
-.animate-float-y-delay {
-  animation: floatY 5.2s ease-in-out infinite;
-  animation-delay: 0.8s;
-}
-
-.animate-float-x {
-  animation: floatX 5s ease-in-out infinite;
-}
-
-.animate-float-x-delay {
-  animation: floatX 5.5s ease-in-out infinite;
-  animation-delay: 1s;
-}
-
-.animate-float-main {
-  animation: floatMain 6s ease-in-out infinite;
-}
-
-.animate-blob-slow {
-  animation: blobSlow 8s ease-in-out infinite;
-}
-
-.animate-blob-reverse {
-  animation: blobReverse 9s ease-in-out infinite;
-}
-
-.animate-pulse-soft {
-  animation: pulseSoft 3.2s ease-in-out infinite;
-}
-
-.animate-spin-soft {
-  animation: spinSoft 18s linear infinite;
-}

@@ -1,8 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PlayCircle } from 'lucide-react';
+import { useAuth } from '../../hooks/useAuth';
 
 const HeroSection = () => {
+  const { user } = useAuth();
+
+  const getStartLearningLink = () => {
+    if (!user) return "/signup";
+    if (user.role === "INSTRUCTOR") return "/instructor/dashboard";
+    return "/student/dashboard";
+  };
   return (
     <section className="relative pt-20 pb-32 overflow-hidden bg-surface">
       <div className="max-w-[1280px] mx-auto px-6 md:px-8 grid lg:grid-cols-2 gap-16 items-center">
@@ -23,7 +31,7 @@ const HeroSection = () => {
           
           <div className="flex flex-wrap gap-4 pt-2">
             <Link 
-              to="/signup" 
+              to={getStartLearningLink()} 
               className="px-8 py-4 bg-primary text-white font-semibold rounded-2xl shadow-lg shadow-primary/25 hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               Start Learning

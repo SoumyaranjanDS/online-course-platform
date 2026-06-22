@@ -11,7 +11,7 @@ const AboutUsSection = () => {
             Our Mission: Democratizing Expert Knowledge
           </h2>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Luminous Learning started with a simple belief: that high-quality education should be accessible to everyone, regardless of their location or background. We partner with top-tier professionals to bring you practical skills that actually matter in today's workforce.
+            Skillwell Learning started with a simple belief: that high-quality education should be accessible to everyone, regardless of their location or background. We partner with top-tier professionals to bring you practical skills that actually matter in today's workforce.
           </p>
           
           <div className="grid sm:grid-cols-2 gap-6 pt-4">
